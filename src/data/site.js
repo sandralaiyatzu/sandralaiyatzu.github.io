@@ -8,7 +8,6 @@ export const NAV_LINKS = [
 
 export const FOOTER_LINKS = [
   { label: 'Linkedin', href: 'https://www.linkedin.com/in/yatzusandralai/' },
-  { label: 'My Visual Design', href: 'https://sandralai.weebly.com/' },
   { label: 'Email', href: EMAIL },
 ];
 

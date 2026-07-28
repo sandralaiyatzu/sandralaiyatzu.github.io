@@ -4,7 +4,6 @@
 .nav-slot {
   position: fixed;
   inset: 0 0 auto 0;
-  height: var(--nav-h);
   z-index: 1;
 }
 
@@ -14,7 +13,7 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: 100%;
+  height: var(--nav-h);
   padding: 24px 240px;
   background: var(--c-white);
 }
@@ -42,6 +41,55 @@
   line-height: 21px;
 }
 
+/* ── Mobile hamburger (right) + drop-down panel ─────────────────── */
+.nav__toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nav__bar {
+  display: block;
+  width: 100%;
+  height: 1.5px;
+  border-radius: 2px;
+  background: var(--c-black);
+  transition:
+    transform 0.3s var(--ease),
+    opacity 0.3s var(--ease);
+}
+
+.nav__toggle.is-open .nav__bar:first-child {
+  transform: translateY(3.25px) rotate(45deg);
+}
+
+.nav__toggle.is-open .nav__bar:last-child {
+  transform: translateY(-3.25px) rotate(-45deg);
+}
+
+.nav__panel {
+  display: none;
+  flex-direction: column;
+  gap: 20px;
+  padding: 8px 24px 24px;
+  background: var(--c-white);
+}
+
+.nav__panel-link {
+  font-family: var(--font-ui);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+}
+
 @media (max-width: 1319px) {
   .nav {
     padding: 24px 160px;
@@ -54,7 +102,7 @@
   }
 }
 
-/* Phone: the original shows the wordmark only — no menu, no hamburger */
+/* Phone: wordmark left, hamburger right, links in a drop-down panel */
 @media (max-width: 809px) {
   :root {
     --nav-h: 56px;
@@ -63,6 +111,16 @@
     padding: 16px 24px;
   }
   .nav__menu {
+    display: none;
+  }
+  .nav__toggle {
+    display: flex;
+  }
+  .nav__panel {
+    display: flex;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  }
+  .nav__panel[hidden] {
     display: none;
   }
 }
