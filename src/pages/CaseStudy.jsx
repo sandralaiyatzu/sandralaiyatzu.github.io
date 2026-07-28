@@ -1,7 +1,8 @@
-import { Navigate, Link } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import RichBlock from '../components/RichBlock';
+import MoreWork from '../components/MoreWork';
 import usePageTitle from '../hooks/usePageTitle';
-import { CASE_META, PROJECTS } from '../data/site';
+import { CASE_META } from '../data/site';
 
 import opt from '../data/opt.json';
 import recruit from '../data/1111-recruit.json';
@@ -23,10 +24,6 @@ export default function CaseStudy({ slug }) {
 
   if (!blocks) return <Navigate to="/404" replace />;
 
-  // "See Next" cycles through the projects in the same order as the work list
-  const idx = PROJECTS.findIndex((p) => p.slug === slug);
-  const next = PROJECTS[(idx + 1) % PROJECTS.length];
-
   return (
     <>
       <main className="cs">
@@ -47,11 +44,7 @@ export default function CaseStudy({ slug }) {
         </div>
       </main>
 
-      <div className="see-next">
-        <Link className="btn btn--hug" to={`/${next.slug}`}>
-          <span className="t-body-lg">See Next</span>
-        </Link>
-      </div>
+      <MoreWork currentSlug={slug} />
     </>
   );
 }
