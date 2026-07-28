@@ -284,8 +284,94 @@
   }
 }
 
+/* Case-study header: title, one-line lead, role/date */
+.cs__header {
+  width: 100%;
+}
+
+.cs__lead {
+  color: var(--c-80);
+  margin-top: 16px;
+}
+
+.cs__meta {
+  color: var(--c-40);
+  margin-top: 12px;
+}
+
+.cs__meta strong {
+  font-weight: 400;
+}
+
+/* Placeholder tile for artwork that hasn't been supplied yet */
+.ph {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  background: #f1f1f3;
+}
+
+.ph--cover {
+  aspect-ratio: 1.9091;
+  height: auto;
+}
+
 .rich {
   width: 100%;
+}
+
+/* Blockquote — a quiet aside, set off by a hairline rule */
+.rich .rich__quote {
+  margin-top: 24px;
+  padding-left: 20px;
+  border-left: 2px solid rgba(0, 0, 0, 0.12);
+  color: var(--c-60);
+}
+
+/* Lists inherit the body preset; markers sit outside the text column */
+.rich .rich__list {
+  margin-top: 20px;
+  padding-left: 20px;
+  color: var(--c-ink);
+}
+
+.rich__list li + li {
+  margin-top: 8px;
+}
+
+/* Tables stay inside their own scroll container on narrow screens */
+.rich .rich__table-wrap {
+  width: 100%;
+  margin-top: 24px;
+  overflow-x: auto;
+}
+
+.rich__table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--c-ink);
+}
+
+.rich__table th,
+.rich__table td {
+  text-align: left;
+  vertical-align: top;
+  padding: 12px 16px 12px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.rich__table th {
+  font-weight: 700;
+  border-bottom-color: rgba(0, 0, 0, 0.16);
+  white-space: nowrap;
+}
+
+.rich code {
+  font-family: ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  font-size: 0.9em;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.05);
 }
 
 /* Rich-text rhythm — matches the original's block margins */

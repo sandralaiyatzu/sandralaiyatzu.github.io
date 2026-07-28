@@ -7,8 +7,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import CaseStudy from './pages/CaseStudy';
 import NotFound from './pages/NotFound';
-
-const CASE_SLUGS = ['opt', '1111-recruit', 'sekaimen'];
+import { CASE_SLUGS } from './data/site';
 
 function ScrollToTop() {
   const { pathname } = useLocation();

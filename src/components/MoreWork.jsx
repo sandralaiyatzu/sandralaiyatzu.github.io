@@ -20,7 +20,11 @@ export default function MoreWork({ currentSlug }) {
           {others.map((p) => (
             <Link className="mini" to={`/${p.slug}`} key={p.slug}>
               <div className="mini__media">
-                <img src={p.cover} alt="" loading="lazy" />
+                {p.cover ? (
+                  <img src={p.cover} alt="" loading="lazy" />
+                ) : (
+                  <div className="ph" role="presentation" />
+                )}
               </div>
               <div className="mini__body">
                 <h6 className="t-h6">{p.title}</h6>

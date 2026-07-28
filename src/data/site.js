@@ -18,30 +18,51 @@ export const HERO = {
   cta: 'Get in touch',
 };
 
+/**
+ * Order and slugs are the source of truth for the work grid, the routes and
+ * the "More Work" sections. Covers are pending — a project without one falls
+ * back to a placeholder tile.
+ */
 export const PROJECTS = [
   {
-    slug: 'opt',
-    title: 'OPT Course Feedback System',
-    tags: 'Product Strategy, User Research, UI/UX Design',
+    slug: 'ruhachu',
+    title: '嚕哈啾 Ruhachu',
+    tags: '獨立產品・產品決策、設計、資料治理',
     description:
-      'OPT歐趴糖是臺灣最大的大學生課程評價查詢網，一年內已累積超過10萬名大學生用戶。作為唯一的設計師，我協助產品進行優化、參與商業策略的討論，並制定規範作為團隊進一步迭代的基準。',
-    cover: '/images/ChKQTUYkbvneAavsEkNLtYismo.png',
+      '貓咪食品與生活用品的成分風險掃描 App。我獨立完成產品決策、流程與介面設計，並建立每週兩次的人工審核機制維持資料庫品質。目前停留在 TestFlight — 因為內測回饋指出真正的門檻在資料覆蓋率，不在介面。',
+    cover: null,
   },
   {
-    slug: '1111-recruit',
-    title: '1111 Recruitment Platform',
-    tags: 'Wireframe, UI/UX Design, Prototyping',
+    slug: 'opt',
+    title: '歐趴雞排',
+    tags: '唯一設計師・產品設計、平面視覺',
     description:
-      '1111 招募系統是一個線上平台，新改版的系統提供了高效、便捷、節省成本的招募解決方案。我是負責使用者體驗與使用者介面的首席設計師，協助將龐大系統建立互動原型，以便更好地向利害關係人傳達願景。',
-    cover: '/images/SygTMzQynDUZtDQELxPCBcnF8.png',
+      '線上線下整合的活動體驗設計。我到現場旁觀十餘場活動、記錄使用者卡在哪裡，找出那個讓人找不到路徑回來的頁面。會員數自 4 萬增至 10 萬以上，現場雞排發放速度自約 150 片/小時提升至約 250 片/小時。',
+    cover: null,
+  },
+  {
+    slug: '1111',
+    title: '1111 Recruitment Platform',
+    tags: '資深 UI/UX 設計師',
+    description:
+      '在一個 20 多年沒改過流程的招募系統上，四個月內交付 MVP。改版涵蓋八大功能模組，我負責從產品流程定義到設計交付，並建立設計系統與元件原則，同時指導一位 junior 設計師。',
+    cover: null,
   },
   {
     slug: 'sekaimen',
-    title: 'Sekaimen E-commerce Website',
-    tags: 'UI/UX Design, Corporate Identity',
+    title: 'Sekaimen 世界門',
+    tags: 'UI/UX 設計・獨立接案',
     description:
-      '世界門是一間在台灣、日本、新加坡擁有據點的代標代購電商平台。我主要負責企業識別重新設計以及電商平台大改版，該專案的目標是透過更直覺的使用者體驗與介面留住及招攬客戶。',
-    cover: '/images/WLCDUH3c3yVHEuX7nh2U2okuqw4.png',
+      '代標代購平台改版與品牌識別重新設計。我把代購流程從 10 步收斂到 7 步，同時辨識出哪些複雜度來自產業的資料介接條件、不屬於介面層。這也是我學到「省下的研究時間會加倍還回來」的專案。',
+    cover: null,
+  },
+  {
+    slug: 'guardianpie',
+    title: '守護派 Guardian Pie',
+    tags: '獨立產品・Side Project',
+    description:
+      '台灣動保組織捐款整合平台，收錄約 100 個組織，其中相當比例連獨立網站都沒有。純公益、不做任何收入，每一筆名單都經我以「政府立案」與「捐款徵信」兩項判準審核後才收錄。',
+    cover: null,
   },
 ];
 
@@ -76,8 +97,4 @@ export const ABOUT = {
   ],
 };
 
-export const CASE_META = {
-  opt: { title: 'OPT Course Feedback System' },
-  '1111-recruit': { title: '1111 Recruitment Platform' },
-  sekaimen: { title: 'Sekaimen E-commerce Website' },
-};
+export const CASE_SLUGS = PROJECTS.map((p) => p.slug);

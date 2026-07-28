@@ -1,64 +1,97 @@
 const PRESET_CLASS = {
-  g2ekjm: 't-display',
-  '1o1rag8': 't-hero',
-  '1jwh9zw': 't-h3',
-  adw3nh: 't-h4',
-  '1s63em2': 't-h5',
-  '1ridul0': 't-h6',
-  '1wtb5pn': 't-body',
-  '9if2k7': 't-body-lg',
-  '6uco42': 't-small',
-};
-
-const TAG_FALLBACK = {
-  h1: 't-hero',
-  h2: 't-display',
-  h3: 't-h3',
-  h4: 't-h4',
   h5: 't-h5',
   h6: 't-h6',
-  p: 't-body',
+  p: 't-small',
 };
 
+const html = (s) => ({ __html: s });
+
 /**
- * Renders one rich-text section of a case study. Items keep the original
- * document order, including images that were placed inline in the copy.
+ * Renders one section of a case study. Item order follows the source
+ * Markdown; every tag maps onto an existing design-system preset.
  */
 export default function RichBlock({ items }) {
   return (
     <div className="rich">
       {items.map((item, i) => {
-        if (item.tag === 'img') {
-          // Inline images keep their authored size; `max-width: 100%` caps them
-          // to the column and `height: auto` preserves the ratio.
-          return (
-            <img
-              key={i}
-              src={item.src}
-              alt={item.alt || ''}
-              loading="lazy"
-              width={item.w}
-              height={item.h}
-              style={{
-                aspectRatio: String(item.ratio),
-                marginTop: `${item.mt ?? 20}px`,
-              }}
-            />
-          );
+        switch (item.tag) {
+          case 'h5':
+          case 'h6': {
+            const Tag = item.tag;
+            return (
+              <Tag
+                key={i}
+                className={PRESET_CLASS[item.tag]}
+                dangerouslySetInnerHTML={html(item.html)}
+              />
+            );
+          }
+
+          case 'quote':
+            return (
+              <blockquote
+                key={i}
+                className="t-small rich__quote"
+                dangerouslySetInnerHTML={html(item.html)}
+              />
+            );
+
+          case 'ul':
+          case 'ol': {
+            const Tag = item.tag;
+            return (
+              <Tag key={i} className="t-small rich__list">
+                {item.entries.map((entry, j) => (
+                  <li key={j} dangerouslySetInnerHTML={html(entry)} />
+                ))}
+              </Tag>
+            );
+          }
+
+          case 'table':
+            return (
+              <div className="rich__table-wrap" key={i}>
+                <table className="t-small rich__table">
+                  <thead>
+                    <tr>
+                      {item.head.map((cell, j) => (
+                        <th key={j} dangerouslySetInnerHTML={html(cell)} />
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {item.rows.map((row, j) => (
+                      <tr key={j}>
+                        {row.map((cell, k) => (
+                          <td key={k} dangerouslySetInnerHTML={html(cell)} />
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            );
+
+          case 'img':
+            return (
+              <img
+                key={i}
+                src={item.src}
+                alt={item.alt || ''}
+                loading="lazy"
+                style={{ aspectRatio: String(item.ratio) }}
+              />
+            );
+
+          default:
+            return (
+              <p
+                key={i}
+                className="t-small"
+                dangerouslySetInnerHTML={html(item.html)}
+              />
+            );
         }
-
-        const Tag = item.tag;
-        const cls = PRESET_CLASS[item.preset] || TAG_FALLBACK[item.tag] || 't-body';
-        const style = item.preset === '1wtb5pn' ? { color: 'var(--c-80)' } : undefined;
-
-        return (
-          <Tag
-            key={i}
-            className={cls}
-            style={style}
-            dangerouslySetInnerHTML={{ __html: item.html }}
-          />
-        );
       })}
     </div>
   );

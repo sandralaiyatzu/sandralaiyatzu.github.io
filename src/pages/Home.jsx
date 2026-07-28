@@ -6,7 +6,11 @@ function WorkCard({ project }) {
   return (
     <Link className="card" to={`/${project.slug}`}>
       <div className="card__media">
-        <img src={project.cover} alt="" />
+        {project.cover ? (
+          <img src={project.cover} alt="" />
+        ) : (
+          <div className="ph" role="presentation" />
+        )}
       </div>
 
       <div className="card__body">
