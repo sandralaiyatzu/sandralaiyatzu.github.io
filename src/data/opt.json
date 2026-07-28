@@ -1,0 +1,433 @@
+[
+ {
+  "type": "rich",
+  "items": [
+   {
+    "tag": "h2",
+    "preset": "g2ekjm",
+    "html": "OPT Course Feedback System"
+   }
+  ]
+ },
+ {
+  "type": "rich",
+  "items": [
+   {
+    "tag": "p",
+    "preset": "1wtb5pn",
+    "html": "OPT歐趴糖是臺灣最大的大學生課程評價查詢網，一年內已累積超過10萬名大學生用戶。作為唯一的設計師，我協助產品進行優化、參與商業策略的討論，並制定規範作為團隊進一步迭代的基準。"
+   }
+  ]
+ },
+ {
+  "type": "image",
+  "src": "/images/ChKQTUYkbvneAavsEkNLtYismo.png",
+  "alt": "",
+  "ratio": 1.9091
+ },
+ {
+  "type": "rich",
+  "items": [
+   {
+    "tag": "h4",
+    "preset": "adw3nh",
+    "html": "<a href=\"https://www.1111opt.com.tw/\">Visit Site 看看網站 →</a>"
+   },
+   {
+    "tag": "h6",
+    "preset": "1ridul0",
+    "html": "<strong>執行期間</strong>"
+   },
+   {
+    "tag": "p",
+    "preset": "6uco42",
+    "html": "2024/02- 2024/03"
+   },
+   {
+    "tag": "h6",
+    "preset": "1ridul0",
+    "html": "負責角色"
+   },
+   {
+    "tag": "p",
+    "preset": "6uco42",
+    "html": "身為唯一的設計師，我協助產品優化、參與商業策略的討論，並制定規範作為團隊進一步迭代的基準。"
+   },
+   {
+    "tag": "h6",
+    "preset": "1ridul0",
+    "html": "專案挑戰"
+   },
+   {
+    "tag": "p",
+    "preset": "6uco42",
+    "html": "「歐趴雞排」是歐趴糖平台的創新快閃活動，融合線上線下體驗。使用者通過填寫簡歷換取免費雞排，旨在更新現有會員資料並吸引新會員。與以往純線上的產品不同，這次我們需要設計一個無縫整合虛擬和實體體驗的流程。在這次的體驗設計挑戰，我們不僅要考慮線上操作的便利性，還要確保現場兌換流程的順暢。"
+   },
+   {
+    "tag": "h6",
+    "preset": "1ridul0",
+    "html": "團隊目標"
+   },
+   {
+    "tag": "p",
+    "preset": "6uco42",
+    "html": "打造無縫整合線上線下的創新活動體驗，提升會員資料完整度並擴大會員基礎。確保介面操作簡便，優化現場兌換流程，實現會員增長與資料更新率。"
+   },
+   {
+    "tag": "h6",
+    "preset": "1ridul0",
+    "html": "專案成就"
+   },
+   {
+    "tag": "h5",
+    "preset": "1s63em2",
+    "html": "+150% 會員數 　 +78% 活躍數 　 +67% 活動進度"
+   },
+   {
+    "tag": "p",
+    "preset": "6uco42",
+    "html": "<br/>"
+   }
+  ]
+ },
+ {
+  "type": "image",
+  "src": "/images/nu29QD5dSONc5P9jZ8nSXdQph8.png",
+  "alt": "",
+  "ratio": 1.9091
+ },
+ {
+  "type": "image",
+  "src": "/images/rsXcZJnX96Xhd7SvpJsRKtuyesY.png",
+  "alt": "",
+  "ratio": 1.9091
+ },
+ {
+  "type": "image",
+  "src": "/images/lxRv5maREzNaArdZnTLVtrkU89s.png",
+  "alt": "",
+  "ratio": 1.9091
+ },
+ {
+  "type": "rich",
+  "items": [
+   {
+    "tag": "h6",
+    "preset": "1ridul0",
+    "html": "專案目標"
+   },
+   {
+    "tag": "p",
+    "preset": "6uco42",
+    "html": "團隊確認活動後，立即展開了一系列密集的策劃會議。通過多輪深入討論和實際演練，我們最終將主要目標聚焦在「確保現場流程的順暢性」和「操作介面的直覺性」，它包含了以下內容："
+   },
+   {
+    "tag": "p",
+    "preset": "6uco42",
+    "html": "<br/>01 | 清晰的目標定位"
+   },
+   {
+    "tag": "p",
+    "preset": "6uco42",
+    "html": "線下體驗： 在活動現場設置大型QR Code看板，方便使用者快速掃描進入官網。<br/>線上體驗： 網站入口設計與主視覺保持一致，醒目的CTA按鈕直接引導使用者進入兌換流程。"
+   },
+   {
+    "tag": "p",
+    "preset": "6uco42",
+    "html": "<br/>02 | 開發理想的使用者旅程"
+   },
+   {
+    "tag": "p",
+    "preset": "6uco42",
+    "html": "核心目標：高效收集會員資料<br/>用戶體驗：點擊CTA按鈕後，進入資料填寫頁面<br/>資料收集：精簡表單設計，僅蒐集必要資訊"
+   },
+   {
+    "tag": "p",
+    "preset": "6uco42",
+    "html": "<br/>"
+   }
+  ]
+ },
+ {
+  "type": "image",
+  "src": "/images/b8wIzfJ9J24vIg34ExE7FizwNA.png",
+  "alt": "",
+  "ratio": 1.9091
+ },
+ {
+  "type": "rich",
+  "items": [
+   {
+    "tag": "h6",
+    "preset": "1ridul0",
+    "html": "發現問題"
+   },
+   {
+    "tag": "p",
+    "preset": "6uco42",
+    "html": "很快地迎來前面幾場的快閃，我也親自參與了現場活動，實際了解使用者遭遇到的困難。"
+   },
+   {
+    "tag": "p",
+    "preset": "6uco42",
+    "html": "<br/>01 | 兌換流程導致用戶困惑"
+   },
+   {
+    "tag": "p",
+    "preset": "6uco42",
+    "html": "當使用者完成資料後，誤以為可以直接兌換雞排；但實際上需再點擊一次按鈕，輸入兌換碼才可真正兌換。這個意料之外的步驟，造成體驗斷層，引發困惑和潛在的挫折感。"
+   },
+   {
+    "tag": "p",
+    "preset": "6uco42",
+    "html": "<br/>02 | 系統不穩定"
+   },
+   {
+    "tag": "p",
+    "preset": "6uco42",
+    "html": "活動現場人潮踴躍，導致網路負荷過重，結果頁面加載緩慢。持續的等待提高使用者不耐煩情緒，甚至導致有使用者放棄參與活動。<br/><br/>"
+   },
+   {
+    "tag": "p",
+    "preset": "6uco42",
+    "html": "03｜簡歷填寫過程中的頁面跳轉問題"
+   },
+   {
+    "tag": "p",
+    "preset": "6uco42",
+    "html": "・這個問題是整個體驗中最顯著的斷層，直接影響活動參與度和完成率。<br/>・由於網站原有架構限制，使用者在填寫簡歷編輯基本資料，需要跳轉到另一個頁面。<br/>・使用者完成編輯後，難以找到返回兌換頁面的路徑。<br/>・中斷了原本流暢的兌換流程，增加使用者認知負擔。<br/>・可能造成使用者的困惑，甚至放棄完成兌換。"
+   },
+   {
+    "tag": "p",
+    "preset": "6uco42",
+    "html": "<br/>"
+   }
+  ]
+ },
+ {
+  "type": "image",
+  "src": "/images/R2VuONRwPNUuRJ5FB9FulR7dEJ8.png",
+  "alt": "",
+  "ratio": 1.9091
+ },
+ {
+  "type": "image",
+  "src": "/images/NiX4tXAdazDNLrw1KMeeLGDmfjc.png",
+  "alt": "",
+  "ratio": 1.9091
+ },
+ {
+  "type": "rich",
+  "items": [
+   {
+    "tag": "h6",
+    "preset": "1ridul0",
+    "html": "兌換流程如何優化"
+   },
+   {
+    "tag": "p",
+    "preset": "6uco42",
+    "html": "現場觀察，發現使用者在填寫完後以為就可以兌換雞排"
+   },
+   {
+    "tag": "p",
+    "preset": "6uco42",
+    "html": "・約 40%的使用者在填寫表單儲存後停止動作<br/>・等工作人員確認兌換碼是否正確時，才知道未輸入兌換碼"
+   },
+   {
+    "tag": "p",
+    "preset": "6uco42",
+    "html": "方案探索：我們討論了可能的解決方案"
+   },
+   {
+    "tag": "p",
+    "preset": "6uco42",
+    "html": "．逐一檢查流程頁面<br/>．確認頁面是否與當初設定的使用者流程有出入<br/>．並與外包開發團隊討論如何減少接觸點"
+   },
+   {
+    "tag": "h6",
+    "preset": "1ridul0",
+    "html": "<br/>如何讓系統更穩定"
+   },
+   {
+    "tag": "p",
+    "preset": "6uco42",
+    "html": "・網站載入時間平均需等待 30秒<br/>・有同學網路不是吃到飽，載入時間甚至超過 1分鐘"
+   },
+   {
+    "tag": "p",
+    "preset": "6uco42",
+    "html": "方案探索：直接與外包開發團隊討論解決方案"
+   },
+   {
+    "tag": "p",
+    "preset": "6uco42",
+    "html": "．外包團隊建議將掃描QR CODE後出現的蓋板中的圖片 png格式改為 webp格式"
+   },
+   {
+    "tag": "p",
+    "preset": "6uco42",
+    "html": "<br/>"
+   }
+  ]
+ },
+ {
+  "type": "image",
+  "src": "/images/ujZ0f0TG9xGO4ggfhRbYtsmsc.png",
+  "alt": "",
+  "ratio": 1.9091
+ },
+ {
+  "type": "image",
+  "src": "/images/03e0r7FGuGl1puaRTojIn856lKU.png",
+  "alt": "",
+  "ratio": 1.9091
+ },
+ {
+  "type": "rich",
+  "items": [
+   {
+    "tag": "h6",
+    "preset": "1ridul0",
+    "html": "如何在簡歷填寫過程不跳轉頁面"
+   },
+   {
+    "tag": "p",
+    "preset": "6uco42",
+    "html": "透過現場觀察，發現使用者在填寫簡歷時的幾項跳頁問題"
+   },
+   {
+    "tag": "p",
+    "preset": "6uco42",
+    "html": "・約 30%的使用者在跳轉頁面後找不到路徑返回<br/>・平均完成時間從預期的 3分鐘延長到 5-7分鐘<br/>・平均單場活動收到超過 10-20次的抱怨"
+   },
+   {
+    "tag": "p",
+    "preset": "6uco42",
+    "html": "方案探索：我們討論了兩個可能的解決方案"
+   },
+   {
+    "tag": "p",
+    "preset": "6uco42",
+    "html": "．內嵌表單方案<br/>．優點：<br/> －使用者停留在同頁面，降低放棄率<br/> －介面一致，降低認知負擔<br/>．缺點：<br/> －開發時程較長<br/> －需要改動架構"
+   },
+   {
+    "tag": "p",
+    "preset": "6uco42",
+    "html": "．點擊編輯方案<br/>．優點：<br/> －使用者停留在同頁面，降低放棄率<br/> －開發時程較短<br/> －不需要改動前端架構<br/>．缺點：<br/> －同個表單填寫介面不一致"
+   },
+   {
+    "tag": "p",
+    "preset": "6uco42",
+    "html": "<br/>"
+   }
+  ]
+ },
+ {
+  "type": "image",
+  "src": "/images/B9JNC19YXMFLWLrDcq8JhBXmN9I.png",
+  "alt": "",
+  "ratio": 1.9091
+ },
+ {
+  "type": "image",
+  "src": "/images/grhjQvK9AxkxueFrlhVfi1u5dkU.png",
+  "alt": "",
+  "ratio": 1.9091
+ },
+ {
+  "type": "rich",
+  "items": [
+   {
+    "tag": "h6",
+    "preset": "1ridul0",
+    "html": "確定優化目標"
+   },
+   {
+    "tag": "p",
+    "preset": "6uco42",
+    "html": "團隊經過幾次活動，會議確定優化方向，以最快迭代方式來改善線下體驗。"
+   },
+   {
+    "tag": "p",
+    "preset": "6uco42",
+    "html": "<br/>01｜避免不必要的跳轉頁面流程<br/><br/>優化：採用點擊編輯方案，直接點擊鈕來編輯基本資料，保持在同一頁面內操作。"
+   },
+   {
+    "tag": "p",
+    "preset": "6uco42",
+    "html": "<br/>02 | 優化兌換流程，減少用戶困惑<br/><br/>優化：減少點擊一次按鈕，整合資料填寫和兌換碼輸入，提供更直覺的引導說明。"
+   },
+   {
+    "tag": "p",
+    "preset": "6uco42",
+    "html": "<br/>03 | 提升系統穩定性，應對高流量<br/><br/>對策：我們與外包開發團隊溝通後， 在需要載入圖檔的頁面輕量化檔案，優化網站性能減少加載時間。"
+   },
+   {
+    "tag": "p",
+    "preset": "6uco42",
+    "html": "<br/>"
+   }
+  ]
+ },
+ {
+  "type": "rich",
+  "items": [
+   {
+    "tag": "h6",
+    "preset": "1ridul0",
+    "html": "里程碑"
+   },
+   {
+    "tag": "p",
+    "preset": "6uco42",
+    "html": "2月春節前完成設計，年後開始開發與QA；接著在3月初前幾場活動進行易用性測試與優化，最後在3月底達到會員10萬大關。"
+   },
+   {
+    "tag": "img",
+    "src": "/images/BUvRUjrsKnk3V3hMumFvdgypraM.png",
+    "alt": "",
+    "ratio": 6.8435,
+    "w": 1574,
+    "h": 230,
+    "mt": 60
+   },
+   {
+    "tag": "h6",
+    "preset": "1ridul0",
+    "html": "專案成就"
+   },
+   {
+    "tag": "h5",
+    "preset": "1s63em2",
+    "html": "+150% 會員數 　 +78% 活躍數 　 +67% 活動進度"
+   },
+   {
+    "tag": "p",
+    "preset": "6uco42",
+    "html": "<strong>會員數</strong>從4萬多增加到10萬多，<strong>平台活躍度</strong>單日進站量達16,000次以上，<strong>活動進度</strong>優化前 150片雞排/hr，優化後 250片雞排/hr。這次活動持續了一個月，在一個月內達到如此成績讓團隊非常興奮。"
+   }
+  ]
+ },
+ {
+  "type": "image",
+  "src": "/images/7bwXGOl3fuKzmG7Gp4ofycX500.png",
+  "alt": "",
+  "ratio": 1.9091
+ },
+ {
+  "type": "rich",
+  "items": [
+   {
+    "tag": "h6",
+    "preset": "1ridul0",
+    "html": "我的學習"
+   },
+   {
+    "tag": "p",
+    "preset": "6uco42",
+    "html": "歐趴雞排是一次極具挑戰性的「線上線下整合體驗設計」。<br/>這個項目讓我深刻體會在快速變化的數字環境中，靈活應對和持續優化的重要性。我學到了如何在保持體驗流暢性的同時，有效地收集關鍵數據。同時，我也意識到在設計階段就需要考慮到現場可能出現的技術問題，如網絡不穩定等。這次經驗讓我更加重視使用者反饋，並學會快速調整策略以適應現場情況。最重要的是，我帶走了如何在複雜環境中保持體驗一致性的寶貴經驗，這將在未來的項目中發揮重要作用。"
+   }
+  ]
+ }
+]

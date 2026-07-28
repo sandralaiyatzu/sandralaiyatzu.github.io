@@ -1,0 +1,427 @@
+/* ══════════════════════════════════════════════════════════════
+   HOME
+   Layout breakpoints on this page in the original: 1320 / 1024 / 768
+   ══════════════════════════════════════════════════════════════ */
+.home {
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 120px;
+  padding: 140px 240px 0;
+  background: var(--c-white);
+}
+
+.hero {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 40px;
+}
+
+.hero__title {
+  width: 100%;
+}
+
+.hero__intro {
+  width: 100%;
+  color: var(--c-80);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 28px;
+  border-radius: 99px;
+  background: var(--c-black);
+  color: var(--c-white);
+}
+
+.btn span {
+  color: var(--c-white);
+}
+
+/* Work list */
+.work {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 120px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  width: 100%;
+  height: 560px;
+  background: var(--c-white);
+}
+
+.card__media {
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.card__body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card__head {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 28px;
+}
+
+/* The title column hugs its text and never wraps, exactly as in the original */
+.card__head-title {
+  flex: none;
+  white-space: nowrap;
+}
+
+.card__head-tags {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.card__tag {
+  color: var(--c-40);
+}
+
+.card__desc {
+  color: var(--c-80);
+}
+
+@media (max-width: 1319px) {
+  .home {
+    padding: 140px 160px 0;
+  }
+  .card {
+    height: 480px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .home {
+    padding: 140px 80px 0;
+    gap: 80px;
+  }
+  .work {
+    gap: 80px;
+  }
+  /* From 1023px down the card hugs its content and the image height is fixed */
+  .card {
+    height: auto;
+  }
+  .card__media {
+    flex: none;
+    height: 314px;
+  }
+  .card__head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .card__head-title,
+  .card__head-tags {
+    width: 100%;
+    flex: none;
+    white-space: normal;
+  }
+  /* the original swaps this line to the Inter 14px preset below 1024 */
+  .card__tag {
+    font-family: var(--font-ui);
+    font-size: 14px;
+    line-height: 150%;
+  }
+}
+
+@media (max-width: 767px) {
+  .home {
+    padding: 140px 24px 0;
+  }
+  .hero {
+    gap: 32px;
+  }
+  .btn {
+    width: 100%;
+  }
+  /* "See Next" stays hug-width and centred at every breakpoint */
+  .btn--hug {
+    width: auto;
+  }
+  .card {
+    gap: 20px;
+  }
+  .card__media {
+    height: 187px;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   CASE STUDY
+   Layout breakpoints in the original: 1320 / 1024 / 810
+   ══════════════════════════════════════════════════════════════ */
+.cs {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 152px 240px 0;
+}
+
+.cs__col {
+  width: 100%;
+  max-width: 960px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 60px;
+}
+
+.cs__figure {
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.cs__figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+/* Sits between the article and the footer, with the original's 80px gaps */
+.see-next {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 80px 0;
+}
+
+.rich {
+  width: 100%;
+}
+
+/* Rich-text rhythm — matches the original's block margins */
+.rich .t-h5 {
+  margin-top: 40px;
+}
+.rich .t-h6 {
+  margin-top: 60px;
+}
+.rich .t-small {
+  margin-top: 20px;
+}
+.rich > *:first-child {
+  margin-top: 0;
+}
+
+/* Inline images inside rich text keep their authored width, capped to the column */
+.rich img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 1319px) {
+  .cs {
+    padding: 152px 160px 0;
+  }
+}
+
+@media (max-width: 1023px) {
+  .cs {
+    padding: 152px 80px 0;
+  }
+}
+
+@media (max-width: 809px) {
+  .cs {
+    padding: 136px 24px 0;
+  }
+  .cs__col {
+    gap: 16px;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   ABOUT
+   ══════════════════════════════════════════════════════════════ */
+.about {
+  width: 100%;
+  max-width: 1320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 120px;
+  padding: 152px 240px 40px;
+}
+
+.about__intro {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 40px;
+}
+
+.about__avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex: none;
+}
+
+.about__intro .t-h3,
+.about__copy {
+  width: 100%;
+}
+
+.about__copy p {
+  color: var(--c-80);
+}
+
+.about__copy p + p {
+  margin-top: 12px;
+}
+
+.about__section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.about__section .t-h3 {
+  width: 100%;
+}
+
+.quotes {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+.quote {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: var(--c-white);
+}
+
+.quote__head {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.quote__avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex: none;
+}
+
+.quote__name {
+  color: var(--c-80);
+}
+
+.quote__role {
+  color: var(--c-60);
+}
+
+.quote__text {
+  color: var(--c-80);
+}
+
+@media (max-width: 1319px) {
+  .about {
+    padding: 152px 160px 40px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .about {
+    padding: 152px 80px 40px;
+  }
+}
+
+@media (max-width: 809px) {
+  .about {
+    padding: 136px 24px 40px;
+    gap: 80px;
+  }
+  .quotes {
+    flex-direction: column;
+    gap: 40px;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   404
+   ══════════════════════════════════════════════════════════════ */
+.nf {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 136px 64px 0;
+  text-align: center;
+}
+
+.nf__box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+}
+
+.nf__link {
+  margin-top: 66px;
+}
+
+@media (max-width: 809px) {
+  .nf {
+    padding: 120px 24px 0;
+  }
+  .nf__link {
+    margin-top: 48px;
+  }
+}
