@@ -7,13 +7,11 @@ import { CASE_META } from '../data/site';
 import opt from '../data/opt.json';
 import recruit from '../data/1111-recruit.json';
 import sekaimen from '../data/sekaimen.json';
-import akari from '../data/akari.json';
 
 const CONTENT = {
   opt,
   '1111-recruit': recruit,
   sekaimen,
-  akari,
 };
 
 export default function CaseStudy({ slug }) {

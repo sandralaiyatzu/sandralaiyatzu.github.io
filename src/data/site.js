@@ -43,14 +43,6 @@ export const PROJECTS = [
       '世界門是一間在台灣、日本、新加坡擁有據點的代標代購電商平台。我主要負責企業識別重新設計以及電商平台大改版，該專案的目標是透過更直覺的使用者體驗與介面留住及招攬客戶。',
     cover: '/images/WLCDUH3c3yVHEuX7nh2U2okuqw4.png',
   },
-  {
-    slug: 'akari',
-    title: 'Akari AI Security Care App',
-    tags: 'Wireframe, UI/UX Design',
-    description:
-      'Akari AI 安全照護 App 是針對產品連線及功能展示的一個應用程式，它提供了連結、監控和管理多項功能。我身為端到端的設計師，負責塑造從產品安裝流程到應用程式中的家具調度等全面體驗。目的在創造更安全、更優質的環境體驗。',
-    cover: '/images/fejO4k5YiWdfDJK6MP9HKs2k.png',
-  },
 ];
 
 export const ABOUT = {
@@ -88,5 +80,4 @@ export const CASE_META = {
   opt: { title: 'OPT Course Feedback System' },
   '1111-recruit': { title: '1111 Recruitment Platform' },
   sekaimen: { title: 'Sekaimen E-commerce Website' },
-  akari: { title: 'Akari AI Security Care App' },
 };
