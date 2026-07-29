@@ -40,17 +40,29 @@ export default function Home() {
           <span>{HERO.lines[1]}</span>
         </h2>
 
-        <p className="t-body hero__intro">{HERO.intro}</p>
+        <div className="hero__intro">
+          {HERO.intro.map((text, i) => (
+            <p className="t-body" key={i}>
+              {text}
+            </p>
+          ))}
+        </div>
 
         <a className="btn" href={EMAIL}>
           <span className="t-body-lg">{HERO.cta}</span>
         </a>
       </section>
 
-      <section className="work appear-up">
-        {PROJECTS.map((p) => (
-          <WorkCard key={p.slug} project={p} />
-        ))}
+      <section className="work appear-up" aria-labelledby="work-heading">
+        <h3 className="t-h3 work__heading" id="work-heading">
+          {HERO.workHeading}
+        </h3>
+
+        <div className="work__list">
+          {PROJECTS.map((p) => (
+            <WorkCard key={p.slug} project={p} />
+          ))}
+        </div>
       </section>
     </main>
   );

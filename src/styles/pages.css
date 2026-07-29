@@ -29,7 +29,19 @@
 
 .hero__intro {
   width: 100%;
+}
+
+.hero__intro p {
   color: var(--c-80);
+}
+
+.hero__intro p + p {
+  margin-top: 12px;
+}
+
+/* "Selected Work" sits above the list, sharing the list's own gap */
+.work__heading {
+  width: 100%;
 }
 
 .btn {
@@ -47,8 +59,16 @@
   color: var(--c-white);
 }
 
-/* Work list */
+/* Work list — heading sits 40px above the list, cards keep the 120px rhythm */
 .work {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.work__list {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -96,10 +116,10 @@
   gap: 28px;
 }
 
-/* The title column hugs its text and never wraps, exactly as in the original */
+/* The title column hugs its text, but may shrink now that titles run long */
 .card__head-title {
-  flex: none;
-  white-space: nowrap;
+  flex: 0 1 auto;
+  min-width: 0;
 }
 
 .card__head-tags {
@@ -129,7 +149,7 @@
     padding: 140px 80px 0;
     gap: 80px;
   }
-  .work {
+  .work__list {
     gap: 80px;
   }
   /* From 1023px down the card hugs its content and the image height is fixed */
@@ -149,7 +169,6 @@
   .card__head-tags {
     width: 100%;
     flex: none;
-    white-space: normal;
   }
   /* the original swaps this line to the Inter 14px preset below 1024 */
   .card__tag {
@@ -238,7 +257,7 @@
 .more__grid {
   display: grid;
   grid-template-columns: repeat(var(--cols, 3), minmax(0, 1fr));
-  gap: 32px;
+  gap: 16px;
 }
 
 .mini {
@@ -489,6 +508,23 @@
 
 .about__section .t-h3 {
   width: 100%;
+}
+
+/* "我怎麼工作" / "關於 AI" — sub-headed prose blocks */
+.about__blocks {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.about__block .t-h5 {
+  margin-bottom: 12px;
+}
+
+.about__contact {
+  width: 100%;
+  color: var(--c-80);
 }
 
 .quotes {

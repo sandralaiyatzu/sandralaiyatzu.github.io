@@ -20,6 +20,34 @@ export default function About() {
         </div>
       </section>
 
+      {ABOUT.sections.map((section) => (
+        <section className="about__section appear-up" key={section.heading}>
+          <h3 className="t-h3">{section.heading}</h3>
+
+          <div className="about__blocks">
+            {section.items.map((item, i) => (
+              <article className="about__block" key={item.title ?? i}>
+                {item.title && <h5 className="t-h5">{item.title}</h5>}
+                <div className="about__copy">
+                  {item.paragraphs.map((text, j) => (
+                    <p key={j} className="t-body">
+                      {text}
+                    </p>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      ))}
+
+      <p className="t-body about__contact appear-up">
+        {ABOUT.contact.lead}
+        <a className="link" href={`mailto:${ABOUT.contact.email}`}>
+          {ABOUT.contact.email}
+        </a>
+      </p>
+
       <section className="about__section appear-up">
         <h3 className="t-h3">{ABOUT.quotesHeading}</h3>
 
