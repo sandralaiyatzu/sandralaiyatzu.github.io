@@ -13,7 +13,7 @@
    "items": [
     {
      "tag": "h4",
-     "html": "<a href=\"https://www.1111opt.com.tw/\">Visit Site 看看網站 →</a>"
+     "html": "<a href=\"https://www.1111opt.com.tw/\" target=\"_blank\" rel=\"noreferrer\">Visit Site 看看網站 →</a>"
     },
     {
      "tag": "h4",

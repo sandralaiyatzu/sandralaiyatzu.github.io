@@ -13,7 +13,7 @@
    "items": [
     {
      "tag": "h4",
-     "html": "Visit Site 看看網站 → （連結至：ruhachu.com）"
+     "html": "<a href=\"https://ruhachu.com\" target=\"_blank\" rel=\"noreferrer\">Visit Site 看看網站 →</a>"
     },
     {
      "tag": "h4",

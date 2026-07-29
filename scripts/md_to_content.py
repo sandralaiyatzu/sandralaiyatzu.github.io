@@ -37,11 +37,24 @@ def inline(text):
     """Markdown inline syntax -> the small HTML subset RichBlock allows."""
     text = text.strip()
     text = re.sub(r'!\[([^\]]*)\]\(([^)]+)\)', '', text)
-    text = re.sub(r'\[([^\]]+)\]\(([^)]+)\)', r'<a href="\2">\1</a>', text)
-    # "（連結至：https://…）" -> turn the preceding text into the link
+    def _link(label, url):
+        """External links leave the portfolio, so open them in a new tab."""
+        url = url.strip()
+        if not re.match(r'^[a-zA-Z][\w+.-]*:', url) and not url.startswith('/'):
+            url = 'https://' + url
+        attrs = ''
+        if url.startswith(('http://', 'https://')):
+            attrs = ' target="_blank" rel="noreferrer"'
+        return f'<a href="{url}"{attrs}>{label.strip()}</a>'
+
+    text = re.sub(r'\[([^\]]+)\]\(([^)]+)\)',
+                  lambda m: _link(m.group(1), m.group(2)), text)
+
+    # "（連結至：…）" turns the preceding text into a link. The URL may be
+    # written bare ("ruhachu.com") or with a scheme.
     text = re.sub(
-        r'^(.*?)\s*[（(]\s*連結至\s*[：:]\s*(https?://[^\s）)]+)\s*[）)]\s*$',
-        r'<a href="\2">\1</a>', text)
+        r'^(.*?)\s*[（(]\s*連結至\s*[：:]\s*([^\s）)]+)\s*[）)]\s*$',
+        lambda m: _link(m.group(1), m.group(2)), text)
     text = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', text)
     text = re.sub(r'(?<!\*)\*(?!\*)(.+?)(?<!\*)\*(?!\*)', r'<em>\1</em>', text)
     text = re.sub(r'`([^`]+)`', r'<code>\1</code>', text)

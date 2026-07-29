@@ -74,7 +74,8 @@ Plus a few conveniences:
   normal list entry.
 - A label hugs its copy (6px) and is pushed away from the previous group
   (32px), so groups read as groups.
-- `（連結至：https://…）` after a heading turns that heading into a link.
+- `（連結至：…）` after a heading turns that heading into a link. The URL may
+  be bare (`ruhachu.com`) or include a scheme; external links open in a new tab.
 - `---` rules are separators and are dropped.
 - Sections headed **`待你確認`** or **`待補`** are editorial notes and are
   never published.
