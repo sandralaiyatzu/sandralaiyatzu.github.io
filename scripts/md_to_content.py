@@ -2,19 +2,25 @@
 """
 Convert a case-study Markdown file into the block JSON the site renders.
 
-Output schema (consumed by src/components/RichBlock.jsx):
+Document rules (kept deliberately simple):
 
-  [{"type": "rich", "items": [ {...}, ... ]}, ...]
+    #            page title            50px   .t-display
+    ##           section heading       20px   .t-h4
+    everything   body copy             14px   .t-small
+    圖片佔位      an image placeholder
 
-Item tags map onto the existing design-system presets:
-  h6  -> .t-h6   (Inter 700 18px)   section heading   -- from "##"
-  h5  -> .t-h5   (Inter 700 20px)   sub-heading       -- from "###"
-  p   -> .t-small(Inter 14px)       body copy
-  lead-> .t-body (Satoshi 16px)     the page intro
-  meta-> .t-small                   role / date line
-  ul / ol / quote / table / img     structural blocks
+The first paragraph under the title is split: its first line becomes the
+byline (role / dates), the rest becomes the lead.
 
-Editorial sections ("待你確認" / "待補") are private notes and never emitted.
+Output:
+
+    {
+      "title": str, "meta": str|None, "lead": str|None,
+      "blocks": [ {"type":"rich","items":[...]} | {"type":"image", ...} ]
+    }
+
+"---" rules are separators and are dropped. Editorial sections
+("待你確認" / "待補") are private notes and are never emitted.
 """
 
 import json
@@ -23,47 +29,76 @@ import sys
 from pathlib import Path
 
 SKIP_HEADINGS = ('待你確認', '待補', '待確認')
-
-# Section headings that only label the source document, not the page
-DROP_SECTIONS = ('Hook',)
+IMAGE_MARKERS = ('圖片佔位', '圖片待補', '[圖片]')
+DEFAULT_RATIO = 1.9091
 
 
 def inline(text):
     """Markdown inline syntax -> the small HTML subset RichBlock allows."""
     text = text.strip()
-    text = re.sub(r'!\[([^\]]*)\]\(([^)]+)\)', '', text)          # images: pending
+    text = re.sub(r'!\[([^\]]*)\]\(([^)]+)\)', '', text)
     text = re.sub(r'\[([^\]]+)\]\(([^)]+)\)', r'<a href="\2">\1</a>', text)
+    # "（連結至：https://…）" -> turn the preceding text into the link
+    text = re.sub(
+        r'^(.*?)\s*[（(]\s*連結至\s*[：:]\s*(https?://[^\s）)]+)\s*[）)]\s*$',
+        r'<a href="\2">\1</a>', text)
     text = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', text)
     text = re.sub(r'(?<!\*)\*(?!\*)(.+?)(?<!\*)\*(?!\*)', r'<em>\1</em>', text)
     text = re.sub(r'`([^`]+)`', r'<code>\1</code>', text)
     return text.strip()
 
 
+def is_image_marker(line):
+    s = line.strip()
+    return any(s == m or s.startswith(m) for m in IMAGE_MARKERS)
+
+
 def parse(md_path):
     lines = Path(md_path).read_text(encoding='utf-8').split('\n')
-    items = []
-    title = subtitle = meta = None
-    i = 0
-    skipping = False
 
-    def flush_para(buf):
-        if not buf:
-            return
-        html = inline('<br/>'.join(b.strip() for b in buf if b.strip()))
-        if html:
-            items.append({'tag': 'p', 'html': html})
-
+    title = meta = lead = None
+    blocks = []
+    items = []          # items of the rich block currently being built
     para = []
+    skipping = False
+    seen_first_para = False
 
+    def flush_para():
+        nonlocal para, meta, lead, seen_first_para
+        if not para:
+            return
+        rows = [p.strip() for p in para if p.strip()]
+        para = []
+        if not rows:
+            return
+        # The first paragraph under the title carries the byline and the hook
+        if title and not seen_first_para and not items and not blocks:
+            seen_first_para = True
+            meta = inline(rows[0])
+            if len(rows) > 1:
+                lead = inline('<br/>'.join(rows[1:]))
+            return
+        # A leading "01 | …" line is a label for the copy beneath it
+        parts = [inline(r) for r in rows]
+        if re.match(r'^\d{1,2}\s*[|｜]', rows[0]):
+            parts[0] = f'<strong>{parts[0]}</strong>'
+        items.append({'tag': 'p', 'html': '<br/>'.join(parts)})
+
+    def close_rich():
+        nonlocal items
+        if items:
+            blocks.append({'type': 'rich', 'items': items})
+            items = []
+
+    i = 0
     while i < len(lines):
-        raw = lines[i]
-        line = raw.rstrip()
+        line = lines[i].rstrip()
         stripped = line.strip()
 
-        # ── headings ──────────────────────────────────────────────
-        m = re.match(r'^(#{1,6})\s+(.*)$', stripped)
+        # ── headings (tolerate a missing space after the hashes) ──
+        m = re.match(r'^(#{1,6})\s*(.+)$', stripped)
         if m:
-            flush_para(para); para = []
+            flush_para()
             level, text = len(m.group(1)), m.group(2).strip()
 
             if any(k in text for k in SKIP_HEADINGS):
@@ -73,14 +108,9 @@ def parse(md_path):
             skipping = False
 
             if level == 1:
-                parts = [p.strip() for p in re.split(r'[｜|]', text, 1)]
-                title = parts[0]
-                subtitle = parts[1] if len(parts) > 1 else None
-            elif text.strip('# ') in DROP_SECTIONS:
-                pass  # the hook body still renders, just not its label
+                title = re.sub(r'<[^>]+>', '', inline(text))
             else:
-                items.append({'tag': 'h6' if level == 2 else 'h5',
-                              'html': inline(text)})
+                items.append({'tag': 'h4', 'html': inline(text)})
             i += 1
             continue
 
@@ -88,22 +118,25 @@ def parse(md_path):
             i += 1
             continue
 
-        # ── horizontal rule ───────────────────────────────────────
-        if re.fullmatch(r'-{3,}|\*{3,}', stripped):
-            flush_para(para); para = []
+        # ── image placeholder ─────────────────────────────────────
+        if is_image_marker(stripped):
+            flush_para()
+            close_rich()
+            blocks.append({'type': 'image', 'placeholder': True,
+                           'ratio': DEFAULT_RATIO})
             i += 1
             continue
 
-        # ── the bold meta line right under the title ──────────────
-        if meta is None and title and re.fullmatch(r'\*\*.+\*\*', stripped):
-            meta = inline(stripped)
+        # ── horizontal rule: a separator, not content ─────────────
+        if re.fullmatch(r'-{3,}|\*{3,}', stripped):
+            flush_para()
             i += 1
             continue
 
         # ── table ─────────────────────────────────────────────────
         if stripped.startswith('|') and i + 1 < len(lines) \
                 and re.match(r'^\|[\s:|-]+\|$', lines[i + 1].strip()):
-            flush_para(para); para = []
+            flush_para()
             header = [c.strip() for c in stripped.strip('|').split('|')]
             i += 2
             rows = []
@@ -112,13 +145,12 @@ def parse(md_path):
                              for c in lines[i].strip().strip('|').split('|')])
                 i += 1
             items.append({'tag': 'table',
-                          'head': [inline(h) for h in header],
-                          'rows': rows})
+                          'head': [inline(h) for h in header], 'rows': rows})
             continue
 
         # ── blockquote ────────────────────────────────────────────
         if stripped.startswith('>'):
-            flush_para(para); para = []
+            flush_para()
             buf = []
             while i < len(lines) and lines[i].strip().startswith('>'):
                 buf.append(lines[i].strip().lstrip('>').strip())
@@ -129,7 +161,7 @@ def parse(md_path):
 
         # ── lists ─────────────────────────────────────────────────
         if re.match(r'^\s*[-*]\s+', line) or re.match(r'^\s*\d+\.\s+', line):
-            flush_para(para); para = []
+            flush_para()
             ordered = bool(re.match(r'^\s*\d+\.\s+', line))
             entries = []
             while i < len(lines):
@@ -142,31 +174,28 @@ def parse(md_path):
                     i += 1
                 else:
                     break
-            items.append({'tag': 'ol' if ordered else 'ul', 'entries': entries})
+            # A lone bullet introduces the copy under it — that's a label,
+            # not a list. Render it as a bold line instead.
+            if len(entries) == 1 and not ordered:
+                items.append({'tag': 'p',
+                              'html': f'<strong>{entries[0]}</strong>'})
+            else:
+                items.append({'tag': 'ol' if ordered else 'ul',
+                              'entries': entries})
             continue
 
-        # ── blank line ends a paragraph ───────────────────────────
         if not stripped:
-            flush_para(para); para = []
+            flush_para()
             i += 1
             continue
 
         para.append(stripped)
         i += 1
 
-    flush_para(para)
+    flush_para()
+    close_rich()
 
-    # Trim a leading empty run and collapse doubled headings
-    while items and items[0]['tag'] in ('h5', 'h6') and len(items) > 1 \
-            and items[1]['tag'] in ('h5', 'h6'):
-        items.pop(0)
-
-    return {
-        'title': title,
-        'subtitle': subtitle,
-        'meta': meta,
-        'blocks': [{'type': 'rich', 'items': items}],
-    }
+    return {'title': title, 'meta': meta, 'lead': lead, 'blocks': blocks}
 
 
 if __name__ == '__main__':
@@ -174,5 +203,6 @@ if __name__ == '__main__':
     data = parse(src)
     Path(dest).write_text(
         json.dumps(data, ensure_ascii=False, indent=1), encoding='utf-8')
-    n = len(data['blocks'][0]['items'])
-    print(f'{Path(dest).name:22} {n:3} items   title={data["title"]}')
+    n_img = sum(1 for b in data['blocks'] if b['type'] == 'image')
+    n_txt = sum(1 for b in data['blocks'] if b['type'] == 'rich')
+    print(f'{Path(dest).name:20} {n_txt:3} text  {n_img:3} images   {data["title"]}')

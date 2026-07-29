@@ -60,7 +60,7 @@ export const PROJECTS = [
   },
   {
     slug: 'guardianpie',
-    title: '05｜守護派 Guardian Pie｜動物捐款整合平台',
+    title: '05｜Guardian Pie 守護派｜動物捐款整合平台',
     tags: 'Independent Product · IA · Non-profit',
     description:
       'Google 搜尋動保捐款，排在前面的永遠是同幾個組織。還有一群組織連自己的網站都沒有，只能靠 Facebook 貼文募款。這份案例談的是：我做了一個解決能見度問題的平台，卻沒有替它爭取能見度。',

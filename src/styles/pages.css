@@ -220,10 +220,16 @@
   gap: 60px;
 }
 
+/* Figures are buttons so they can be opened full-screen */
 .cs__figure {
+  display: block;
   width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
   border-radius: 20px;
   overflow: hidden;
+  cursor: zoom-in;
 }
 
 .cs__figure img {
@@ -398,18 +404,28 @@
   background: rgba(0, 0, 0, 0.05);
 }
 
-/* Rich-text rhythm — matches the original's block margins */
-.rich .t-h5 {
-  margin-top: 40px;
-}
-.rich .t-h6 {
-  margin-top: 60px;
+/* Rich-text rhythm */
+.rich .t-h4 {
+  margin-top: 48px;
 }
 .rich .t-small {
   margin-top: 20px;
 }
 .rich > *:first-child {
   margin-top: 0;
+}
+
+/* Inline images open full-screen, same as the standalone figures */
+.rich .rich__img {
+  display: block;
+  width: 100%;
+  margin-top: 24px;
+  padding: 0;
+  border: 0;
+  background: none;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: zoom-in;
 }
 
 /* Inline images inside rich text keep their authored width, capped to the column */
@@ -629,5 +645,93 @@
   }
   .nf__link {
     margin-top: 48px;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   LIGHTBOX
+   ══════════════════════════════════════════════════════════════ */
+.lb {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 64px;
+  background: rgba(0, 0, 0, 0.88);
+  cursor: zoom-out;
+  animation: lb-in 0.25s var(--ease) both;
+}
+
+@keyframes lb-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.lb__img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  cursor: default;
+}
+
+.lb__close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  cursor: pointer;
+}
+
+.lb__close:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.lb__bar {
+  position: absolute;
+  width: 16px;
+  height: 1.5px;
+  border-radius: 2px;
+  background: var(--c-white);
+}
+
+.lb__bar:first-child {
+  transform: rotate(45deg);
+}
+
+.lb__bar:last-child {
+  transform: rotate(-45deg);
+}
+
+@media (max-width: 809px) {
+  .lb {
+    padding: 24px;
+  }
+  .lb__close {
+    top: 12px;
+    right: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lb {
+    animation: none;
   }
 }

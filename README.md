@@ -1,28 +1,34 @@
 # Sandra Lai — Portfolio
 
-A React rebuild of [sandralai.framer.website](https://sandralai.framer.website/),
-matching the original's layout, typography, colours, responsive behaviour and
-motion.
+Product design portfolio. Originally a 1:1 React rebuild of
+[sandralai.framer.website](https://sandralai.framer.website/); the layout and
+motion still follow that original, while the content and type system have since
+been reworked.
+
+Deployed to GitHub Pages at **sandralaiyatzu.com**.
 
 ## Stack
 
 - **Vite** + **React 19**
 - **React Router** (client-side routing)
-- Plain CSS, no framework — the type scale and spacing mirror the original's
-  Framer style presets 1:1
-- Self-hosted fonts (Satoshi, Inter) and images — no external requests at runtime
+- Plain CSS, no framework
+- Self-hosted Satoshi and local images — no external requests at runtime
 
 ## Pages
 
-| Route           | Page                        |
-| --------------- | --------------------------- |
-| `/`             | Work / home                 |
-| `/about`        | About                       |
-| `/opt`          | OPT Course Feedback System  |
-| `/1111-recruit` | 1111 Recruitment Platform   |
-| `/sekaimen`     | Sekaimen E-commerce Website |
-| `/akari`        | Akari AI Security Care App  |
-| anything else   | 404                         |
+| Route          | Page                                        |
+| -------------- | ------------------------------------------- |
+| `/`            | Work / home                                 |
+| `/about`       | About                                       |
+| `/ruhachu`     | 01｜Ruhachu 嚕哈啾                          |
+| `/opt`         | 02｜OPT 歐趴糖                              |
+| `/1111`        | 03｜1111 人力銀行                           |
+| `/sekaimen`    | 04｜Sekaimen 世界門                         |
+| `/guardianpie` | 05｜Guardian Pie 守護派                     |
+| anything else  | 404                                         |
+
+Order, slugs and routes all derive from `PROJECTS` in `src/data/site.js` —
+adding a project there adds its card, its route and its "More Work" entry.
 
 ## Development
 
@@ -36,27 +42,68 @@ npm run build      # outputs to dist/ (plus 404.html, .nojekyll, CNAME)
 npm run preview    # serve the production build locally
 ```
 
+## Content
+
+**Home, About, nav and footer copy** live in `src/data/site.js`.
+
+**Case studies** are generated from the Markdown sources in the parent folder
+into `src/data/<slug>.json`. Edit the Markdown, then regenerate:
+
+```bash
+sh scripts/build-content.sh ..
+```
+
+### Case-study Markdown rules
+
+The document has three levels, and nothing else:
+
+| Markdown       | Renders as              | Size |
+| -------------- | ----------------------- | ---- |
+| `#`            | page title (`.t-display`) | 50px |
+| `##`           | section heading (`.t-h4`) | 20px |
+| everything else | body copy (`.t-small`)   | 14px |
+
+Plus a few conveniences:
+
+- **`圖片佔位`** on its own line becomes an image placeholder tile.
+- The **first paragraph under `#`** is split: line 1 is the byline
+  (role / dates), the rest is the lead.
+- A line starting **`01 |`** is bolded as a label for the copy beneath it.
+- A **lone `-` bullet** is treated as a label, not a one-item list.
+- `（連結至：https://…）` after a heading turns that heading into a link.
+- `---` rules are separators and are dropped.
+- Sections headed **`待你確認`** or **`待補`** are editorial notes and are
+  never published.
+
+Lists, tables and blockquotes are supported and styled.
+
+Case-study images open full-screen on click (Escape, the close button, or a
+click outside dismisses). Placeholder tiles are not clickable.
+
 ## Design system
 
-Breakpoints follow the original exactly:
+Breakpoints:
 
 - **Layout** — `≥1320` / `1024–1319` / `810–1023` (home uses `768`) / `≤809`
 - **Typography** — `≥1200` / `810–1199` / `≤809`
 
-Type scale (`src/styles/global.css`):
+One family throughout (Satoshi) and two line-height steps: **130% for
+headings, 150% for text**.
 
-| Class         | Font    | Size (desktop / tablet / mobile) | Weight | Line height        |
-| ------------- | ------- | -------------------------------- | ------ | ------------------ |
-| `.t-hero`     | Satoshi | 98 / 73 / 42                     | 500    | 120%               |
-| `.t-display`  | Satoshi | 50 / 40 / 32                     | 500    | 130%               |
-| `.t-h3`       | Satoshi | 36 / 32 / 26                     | 500    | 130%               |
-| `.t-h4/.t-h5` | Inter   | 20                               | 700    | 150%               |
-| `.t-h6`       | Inter   | 18                               | 700    | 100%               |
-| `.t-body-lg`  | Satoshi | 18 / 18 / 16                     | 400    | 150%               |
-| `.t-body`     | Satoshi | 16 / 16 / 14                     | 400    | 150% / 140% / 130% |
-| `.t-small`    | Inter   | 14                               | 400    | 150%               |
+| Class         | Size (desktop / tablet / mobile) | Weight | Line height |
+| ------------- | -------------------------------- | ------ | ----------- |
+| `.t-hero`     | 98 / 73 / 42                     | 500    | 130%        |
+| `.t-display`  | 50 / 40 / 32                     | 500    | 130%        |
+| `.t-h3`       | 36 / 32 / 26                     | 500    | 130%        |
+| `.t-h4/.t-h5` | 20                               | 700    | 130%        |
+| `.t-h6`       | 18                               | 700    | 130%        |
+| `.t-body-lg`  | 18 / 18 / 16                     | 400    | 150%        |
+| `.t-body`     | 16 / 16 / 14                     | 400    | 150%        |
+| `.t-small`    | 14                               | 400    | 150%        |
 
 Colours: `#000`, `#333`, `rgba(0,0,0,.8 / .6 / .4)`, `#fff`.
+
+Radii: 20px for large media, 12px for the compact "More Work" cards.
 
 Motion (`cubic-bezier(0.44, 0, 0.56, 1)`):
 
@@ -66,21 +113,14 @@ Motion (`cubic-bezier(0.44, 0, 0.56, 1)`):
 
 `prefers-reduced-motion` disables the entrance animations.
 
-## Content
-
-Case-study copy lives in `src/data/*.json` as ordered blocks (`rich` text
-sections and `image` blocks), so text can be edited without touching components.
-Home, About and nav/footer copy is in `src/data/site.js`.
-
 ## Deploying to GitHub Pages
 
 `.github/workflows/deploy.yml` builds and publishes `dist/` on every push to
 `main`. In the repository, set **Settings → Pages → Source** to **GitHub
 Actions**.
 
-For a custom domain, add a `CNAME` file at the project root containing the bare
-domain (e.g. `sandralai.com`); the build copies it into `dist/`. Then point DNS
-at GitHub:
+`public/CNAME` holds the custom domain and is copied into `dist/` by the build.
+Point DNS at GitHub:
 
 - Apex domain — `A` records to `185.199.108.153`, `185.199.109.153`,
   `185.199.110.153`, `185.199.111.153`

@@ -1,32 +1,29 @@
-const PRESET_CLASS = {
-  h5: 't-h5',
-  h6: 't-h6',
-  p: 't-small',
-};
+/**
+ * Case-study rich text.
+ *
+ * The document only has three levels: the page title (rendered by the page),
+ * "##" section headings at 20px, and body copy at 14px. Older case studies
+ * still carry h5/h6 items, so those map onto the same heading style.
+ */
+const HEADING_TAGS = new Set(['h4', 'h5', 'h6']);
 
 const html = (s) => ({ __html: s });
 
-/**
- * Renders one section of a case study. Item order follows the source
- * Markdown; every tag maps onto an existing design-system preset.
- */
-export default function RichBlock({ items }) {
+export default function RichBlock({ items, onImageClick }) {
   return (
     <div className="rich">
       {items.map((item, i) => {
-        switch (item.tag) {
-          case 'h5':
-          case 'h6': {
-            const Tag = item.tag;
-            return (
-              <Tag
-                key={i}
-                className={PRESET_CLASS[item.tag]}
-                dangerouslySetInnerHTML={html(item.html)}
-              />
-            );
-          }
+        if (HEADING_TAGS.has(item.tag)) {
+          return (
+            <h4
+              key={i}
+              className="t-h4"
+              dangerouslySetInnerHTML={html(item.html)}
+            />
+          );
+        }
 
+        switch (item.tag) {
           case 'quote':
             return (
               <blockquote
@@ -74,13 +71,20 @@ export default function RichBlock({ items }) {
 
           case 'img':
             return (
-              <img
+              <button
+                type="button"
                 key={i}
-                src={item.src}
-                alt={item.alt || ''}
-                loading="lazy"
-                style={{ aspectRatio: String(item.ratio) }}
-              />
+                className="rich__img"
+                onClick={() => onImageClick?.(item)}
+                aria-label="Enlarge image"
+              >
+                <img
+                  src={item.src}
+                  alt={item.alt || ''}
+                  loading="lazy"
+                  style={{ aspectRatio: String(item.ratio) }}
+                />
+              </button>
             );
 
           default:

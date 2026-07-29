@@ -1,6 +1,9 @@
+import { useState, useCallback } from 'react';
 import { Navigate } from 'react-router-dom';
+
 import RichBlock from '../components/RichBlock';
 import MoreWork from '../components/MoreWork';
+import Lightbox from '../components/Lightbox';
 import usePageTitle from '../hooks/usePageTitle';
 import { PROJECTS } from '../data/site';
 
@@ -20,10 +23,14 @@ const CONTENT = {
 
 export default function CaseStudy({ slug }) {
   const doc = CONTENT[slug];
+  const [zoomed, setZoomed] = useState(null);
+
   // The work list is the single source of truth for project names
   const title = PROJECTS.find((p) => p.slug === slug)?.title ?? doc?.title;
 
   usePageTitle(doc ? `${title} — Sandra Lai` : 'Sandra Lai');
+
+  const close = useCallback(() => setZoomed(null), []);
 
   if (!doc) return <Navigate to="/404" replace />;
 
@@ -34,26 +41,52 @@ export default function CaseStudy({ slug }) {
           <header className="cs__header">
             <h2 className="t-display">{title}</h2>
 
-            {doc.subtitle && <p className="t-body cs__lead">{doc.subtitle}</p>}
-
             {doc.meta && (
               <p
                 className="t-small cs__meta"
                 dangerouslySetInnerHTML={{ __html: doc.meta }}
               />
             )}
+
+            {doc.lead && (
+              <p
+                className="t-small cs__lead"
+                dangerouslySetInnerHTML={{ __html: doc.lead }}
+              />
+            )}
           </header>
 
-          {/* Cover art is pending — the placeholder holds the layout */}
-          <div className="ph ph--cover" role="presentation" />
-
-          {doc.blocks.map((block, i) => (
-            <RichBlock key={i} items={block.items} />
-          ))}
+          {doc.blocks.map((block, i) =>
+            block.type === 'image' ? (
+              block.placeholder ? (
+                <div
+                  className="ph ph--cover"
+                  key={i}
+                  role="presentation"
+                  style={{ aspectRatio: String(block.ratio) }}
+                />
+              ) : (
+                <button
+                  type="button"
+                  className="cs__figure"
+                  key={i}
+                  onClick={() => setZoomed(block)}
+                  aria-label="Enlarge image"
+                  style={{ aspectRatio: String(block.ratio) }}
+                >
+                  <img src={block.src} alt={block.alt || ''} loading="lazy" />
+                </button>
+              )
+            ) : (
+              <RichBlock key={i} items={block.items} onImageClick={setZoomed} />
+            )
+          )}
         </div>
       </main>
 
       <MoreWork currentSlug={slug} />
+
+      <Lightbox image={zoomed} onClose={close} />
     </>
   );
 }
