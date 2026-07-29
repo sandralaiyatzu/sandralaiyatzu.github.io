@@ -20,11 +20,11 @@ Deployed to GitHub Pages at **sandralaiyatzu.com**.
 | -------------- | ------------------------------------------- |
 | `/`            | Work / home                                 |
 | `/about`       | About                                       |
-| `/ruhachu`     | 01｜Ruhachu 嚕哈啾                          |
-| `/opt`         | 02｜OPT 歐趴糖                              |
-| `/1111`        | 03｜1111 人力銀行                           |
-| `/sekaimen`    | 04｜Sekaimen 世界門                         |
-| `/guardianpie` | 05｜Guardian Pie 守護派                     |
+| `/ruhachu`     | Ruhachu 嚕哈啾                              |
+| `/opt`         | OPT 歐趴糖                                  |
+| `/1111`        | 1111 人力銀行                               |
+| `/sekaimen`    | Sekaimen 世界門                             |
+| `/guardianpie` | Guardian Pie 守護派                         |
 | anything else  | 404                                         |
 
 Order, slugs and routes all derive from `PROJECTS` in `src/data/site.js` —
@@ -97,8 +97,7 @@ headings, 150% for text**.
 | Class         | Size (desktop / tablet / mobile) | Weight | Line height |
 | ------------- | -------------------------------- | ------ | ----------- |
 | `.t-hero`     | 98 / 73 / 42                     | 500    | 130%        |
-| `.t-display`  | 50 / 40 / 32                     | 500    | 130%        |
-| ↳ case-study title | 48 / 40 / 32                | 500    | 130%        |
+| `.t-display`  | 48 / 40 / 32                     | 500    | 130%        |
 | `.t-h3`       | 36 / 32 / 26                     | 500    | 130%        |
 | `.t-h4/.t-h5` | 20                               | 700    | 130%        |
 | `.t-h6`       | 18                               | 700    | 130%        |

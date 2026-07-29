@@ -28,7 +28,7 @@ export const HERO = {
 export const PROJECTS = [
   {
     slug: 'ruhachu',
-    title: '01｜Ruhachu 嚕哈啾｜獨立開發 App',
+    title: 'Ruhachu 嚕哈啾｜獨立開發 App',
     tags: 'Independent Product · 0→1 · Product Strategy, IA, Data Governance',
     description:
       '一款掃描貓咪食品與生活用品成分風險的 iOS App，由我獨立完成產品定義、資訊架構、介面設計與資料治理，AI 負責開發執行。這份案例談的是：當一個產品要對生命的健康提出警示時，如何設計出「可信但不越界」的判斷。',
@@ -36,7 +36,7 @@ export const PROJECTS = [
   },
   {
     slug: 'opt',
-    title: '02｜OPT 歐趴糖｜線上線下整合的活動體驗',
+    title: 'OPT 歐趴糖｜線上線下整合的活動體驗',
     tags: 'Product Design · Field Research · Cross-functional',
     description:
       '活動現場，一小時只發得出一百多片雞排。瓶頸不在炸鍋，在一個使用者找不到路徑回來的頁面。這份案例談的是：當理想方案被工程時程否決時，如何決定該讓步的是什麼。',
@@ -44,7 +44,7 @@ export const PROJECTS = [
   },
   {
     slug: '1111',
-    title: '03｜1111 人力銀行｜招募平台改版',
+    title: '1111 人力銀行｜招募平台改版',
     tags: 'B2B System · IA · Design System · Mentoring',
     description:
       '一個 20 多年只做功能增刪、從未重新檢視流程的 B2B 招募系統。使用者形容它「像在迷宮裡找出口」。這份案例談的是：在技術債沉重的老系統上，設計師的優先順序判斷如何決定專案能不能推進，以及我當時做錯的那個決定。',
@@ -52,7 +52,7 @@ export const PROJECTS = [
   },
   {
     slug: 'sekaimen',
-    title: '04｜Sekaimen 世界門｜代標代購平台改版',
+    title: 'Sekaimen 世界門｜代標代購平台改版',
     tags: 'E-commerce · Flow Simplification · Corporate Identity',
     description:
       '要在這個平台上買一件東西，使用者得走完十個步驟，中間還會被彈出視窗和新分頁打斷兩次。這份案例談的是：一個我在報價階段就低估了規模的專案，以及它教會我的事。',
@@ -60,7 +60,7 @@ export const PROJECTS = [
   },
   {
     slug: 'guardianpie',
-    title: '05｜Guardian Pie 守護派｜動物捐款整合平台',
+    title: 'Guardian Pie 守護派｜動物捐款整合平台',
     tags: 'Independent Product · IA · Non-profit',
     description:
       'Google 搜尋動保捐款，排在前面的永遠是同幾個組織。還有一群組織連自己的網站都沒有，只能靠 Facebook 貼文募款。這份案例談的是：我做了一個解決能見度問題的平台，卻沒有替它爭取能見度。',
