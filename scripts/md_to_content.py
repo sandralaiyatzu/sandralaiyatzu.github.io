@@ -78,11 +78,16 @@ def parse(md_path):
             if len(rows) > 1:
                 lead = inline('<br/>'.join(rows[1:]))
             return
-        # A leading "01 | …" line is a label for the copy beneath it
-        parts = [inline(r) for r in rows]
+        # A leading "01 | …" line labels the copy beneath it. Emit it as its
+        # own item so a label always sits in the same relationship to its
+        # body, whether the source glued them together or not.
         if re.match(r'^\d{1,2}\s*[|｜]', rows[0]):
-            parts[0] = f'<strong>{parts[0]}</strong>'
-        items.append({'tag': 'p', 'html': '<br/>'.join(parts)})
+            items.append({'tag': 'label', 'html': inline(rows[0])})
+            rows = rows[1:]
+            if not rows:
+                return
+        items.append({'tag': 'p',
+                      'html': '<br/>'.join(inline(r) for r in rows)})
 
     def close_rich():
         nonlocal items
@@ -174,11 +179,16 @@ def parse(md_path):
                     i += 1
                 else:
                     break
-            # A lone bullet introduces the copy under it — that's a label,
-            # not a list. Render it as a bold line instead.
-            if len(entries) == 1 and not ordered:
-                items.append({'tag': 'p',
-                              'html': f'<strong>{entries[0]}</strong>'})
+            # A lone bullet with copy glued directly beneath it (no blank
+            # line) is a label for that copy, not a one-item list. A lone
+            # bullet followed by a blank line is a genuine list entry.
+            glued = (
+                len(entries) == 1 and not ordered
+                and i < len(lines) and lines[i].strip()
+                and not re.match(r'^\s*(?:[-*]|\d+\.)\s+', lines[i])
+            )
+            if glued:
+                items.append({'tag': 'label', 'html': entries[0]})
             else:
                 items.append({'tag': 'ol' if ordered else 'ul',
                               'entries': entries})

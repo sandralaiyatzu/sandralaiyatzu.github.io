@@ -352,7 +352,7 @@
 
 /* Blockquote — a quiet aside, set off by a hairline rule */
 .rich .rich__quote {
-  margin-top: 24px;
+  margin-top: 20px;
   padding-left: 20px;
   border-left: 2px solid rgba(0, 0, 0, 0.12);
   color: var(--c-60);
@@ -372,7 +372,7 @@
 /* Tables stay inside their own scroll container on narrow screens */
 .rich .rich__table-wrap {
   width: 100%;
-  margin-top: 24px;
+  margin-top: 20px;
   overflow-x: auto;
 }
 
@@ -404,13 +404,37 @@
   background: rgba(0, 0, 0, 0.05);
 }
 
-/* Rich-text rhythm */
+/* ── Rich-text rhythm ───────────────────────────────────────────
+   One ladder, so grouping reads consistently everywhere:
+     48px  before a section heading
+     32px  before a label (separates one group from the next)
+     20px  between sibling blocks
+      6px  between a label and the copy it introduces
+   ─────────────────────────────────────────────────────────────── */
 .rich .t-h4 {
   margin-top: 48px;
 }
+
 .rich .t-small {
   margin-top: 20px;
 }
+
+.rich .rich__label {
+  margin-top: 32px;
+  font-weight: 700;
+  color: var(--c-ink);
+}
+
+/* A label hugs whatever follows it — that pairing is the group */
+.rich .rich__label + * {
+  margin-top: 6px;
+}
+
+/* …but two labels in a row are separate items, not a pair */
+.rich .rich__label + .rich__label {
+  margin-top: 20px;
+}
+
 .rich > *:first-child {
   margin-top: 0;
 }
@@ -419,7 +443,7 @@
 .rich .rich__img {
   display: block;
   width: 100%;
-  margin-top: 24px;
+  margin-top: 20px;
   padding: 0;
   border: 0;
   background: none;

@@ -24,6 +24,15 @@ export default function RichBlock({ items, onImageClick }) {
         }
 
         switch (item.tag) {
+          case 'label':
+            return (
+              <p
+                key={i}
+                className="t-small rich__label"
+                dangerouslySetInnerHTML={html(item.html)}
+              />
+            );
+
           case 'quote':
             return (
               <blockquote
