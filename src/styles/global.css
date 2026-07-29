@@ -12,7 +12,6 @@
   --c-40: rgba(0, 0, 0, 0.4);
 
   --font-sans: 'Satoshi', 'Satoshi Placeholder', sans-serif;
-  --font-ui: 'Inter', 'Inter Placeholder', sans-serif;
 
   --ease: cubic-bezier(0.44, 0, 0.56, 1);
 
@@ -61,11 +60,15 @@ figure {
 }
 
 /* ──────────────────────────────────────────────────────────────
-   Typography presets — 1:1 with the original's style presets.
-   Breakpoints: base (>=1200px) / 810–1199px / <=809px
+   Typography presets
+
+   One family (Satoshi) throughout. Two line-height steps:
+     headings (hero / display / h3 / h4 / h5 / h6)  130%
+     text     (body / body-lg / small)              150%
+   Sizes still step down at 810–1199px and <=809px.
    ────────────────────────────────────────────────────────────── */
 
-/* g2ekjm — page title */
+/* Page title */
 .t-display {
   font-family: var(--font-sans);
   font-weight: 500;
@@ -75,16 +78,16 @@ figure {
   color: var(--c-black);
 }
 
-/* 1o1rag8 — 404 numeral */
+/* 404 numeral */
 .t-hero {
   font-family: var(--font-sans);
   font-weight: 500;
   font-size: 98px;
-  line-height: 120%;
+  line-height: 130%;
   color: var(--c-black);
 }
 
-/* 1jwh9zw — section heading */
+/* Section heading */
 .t-h3 {
   font-family: var(--font-sans);
   font-weight: 500;
@@ -93,26 +96,26 @@ figure {
   color: var(--c-black);
 }
 
-/* adw3nh / 1s63em2 — h4 & h5 */
+/* Sub-headings */
 .t-h4,
 .t-h5 {
-  font-family: var(--font-ui);
+  font-family: var(--font-sans);
   font-weight: 700;
   font-size: 20px;
-  line-height: 150%;
+  line-height: 130%;
   color: var(--c-ink);
 }
 
-/* 1ridul0 — h6 / card title */
+/* Card title */
 .t-h6 {
-  font-family: var(--font-ui);
+  font-family: var(--font-sans);
   font-weight: 700;
   font-size: 18px;
-  line-height: 100%;
+  line-height: 130%;
   color: var(--c-ink);
 }
 
-/* 1wtb5pn — Satoshi body */
+/* Body */
 .t-body {
   font-family: var(--font-sans);
   font-weight: 400;
@@ -121,7 +124,7 @@ figure {
   color: var(--c-black);
 }
 
-/* 9if2k7 — Satoshi body large */
+/* Body large */
 .t-body-lg {
   font-family: var(--font-sans);
   font-weight: 400;
@@ -130,9 +133,9 @@ figure {
   color: var(--c-black);
 }
 
-/* 6uco42 — Inter small (no breakpoints in the original) */
+/* Small */
 .t-small {
-  font-family: var(--font-ui);
+  font-family: var(--font-sans);
   font-weight: 400;
   font-size: 14px;
   line-height: 150%;
@@ -149,9 +152,6 @@ figure {
   .t-h3 {
     font-size: 32px;
   }
-  .t-body {
-    line-height: 140%;
-  }
 }
 
 @media (max-width: 809px) {
@@ -166,7 +166,6 @@ figure {
   }
   .t-body {
     font-size: 14px;
-    line-height: 130%;
   }
   .t-body-lg {
     font-size: 16px;

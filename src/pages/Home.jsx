@@ -53,11 +53,7 @@ export default function Home() {
         </a>
       </section>
 
-      <section className="work appear-up" aria-labelledby="work-heading">
-        <h3 className="t-h3 work__heading" id="work-heading">
-          {HERO.workHeading}
-        </h3>
-
+      <section className="work appear-up" aria-label="Selected work">
         <div className="work__list">
           {PROJECTS.map((p) => (
             <WorkCard key={p.slug} project={p} />

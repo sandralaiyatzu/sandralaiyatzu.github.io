@@ -170,11 +170,9 @@
     width: 100%;
     flex: none;
   }
-  /* the original swaps this line to the Inter 14px preset below 1024 */
+  /* the original drops this line to the small preset below 1024 */
   .card__tag {
-    font-family: var(--font-ui);
     font-size: 14px;
-    line-height: 150%;
   }
 }
 
@@ -269,8 +267,13 @@
 .mini__media {
   width: 100%;
   aspect-ratio: 1.9091;
-  border-radius: 20px;
+  border-radius: 12px;
   overflow: hidden;
+}
+
+/* Compact cards run a step smaller than the work-list titles */
+.mini .t-h6 {
+  font-size: 16px;
 }
 
 .mini__media img {
@@ -322,17 +325,19 @@
   font-weight: 400;
 }
 
-/* Placeholder tile for artwork that hasn't been supplied yet */
+/* Placeholder tile for artwork that hasn't been supplied yet.
+   Inside a media frame it takes that frame's radius; standalone it sets its own. */
 .ph {
   width: 100%;
   height: 100%;
-  border-radius: 20px;
+  border-radius: inherit;
   background: #f1f1f3;
 }
 
 .ph--cover {
   aspect-ratio: 1.9091;
   height: auto;
+  border-radius: 20px;
 }
 
 .rich {
