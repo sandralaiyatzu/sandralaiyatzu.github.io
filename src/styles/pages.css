@@ -317,6 +317,24 @@
   width: 100%;
 }
 
+/* The case-study title runs a touch smaller than the home hero.
+   Scoped per breakpoint so it still steps down with the rest of the scale. */
+.cs__header .t-display {
+  font-size: 48px;
+}
+
+@media (max-width: 1199px) and (min-width: 810px) {
+  .cs__header .t-display {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 809px) {
+  .cs__header .t-display {
+    font-size: 32px;
+  }
+}
+
 .cs__lead {
   color: var(--c-80);
   margin-top: 16px;

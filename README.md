@@ -59,7 +59,7 @@ The document has three levels, and nothing else:
 
 | Markdown       | Renders as              | Size |
 | -------------- | ----------------------- | ---- |
-| `#`            | page title (`.t-display`) | 50px |
+| `#`            | page title (`.t-display`) | 48px |
 | `##`           | section heading (`.t-h4`) | 20px |
 | everything else | body copy (`.t-small`)   | 14px |
 
@@ -68,8 +68,12 @@ Plus a few conveniences:
 - **`圖片佔位`** on its own line becomes an image placeholder tile.
 - The **first paragraph under `#`** is split: line 1 is the byline
   (role / dates), the rest is the lead.
-- A line starting **`01 |`** is bolded as a label for the copy beneath it.
-- A **lone `-` bullet** is treated as a label, not a one-item list.
+- A line starting **`01 |`** becomes a label for the copy beneath it.
+- A **lone `-` bullet** becomes a label too, but only when copy is glued
+  directly under it (no blank line). With a blank line after it, it stays a
+  normal list entry.
+- A label hugs its copy (6px) and is pushed away from the previous group
+  (32px), so groups read as groups.
 - `（連結至：https://…）` after a heading turns that heading into a link.
 - `---` rules are separators and are dropped.
 - Sections headed **`待你確認`** or **`待補`** are editorial notes and are
@@ -94,6 +98,7 @@ headings, 150% for text**.
 | ------------- | -------------------------------- | ------ | ----------- |
 | `.t-hero`     | 98 / 73 / 42                     | 500    | 130%        |
 | `.t-display`  | 50 / 40 / 32                     | 500    | 130%        |
+| ↳ case-study title | 48 / 40 / 32                | 500    | 130%        |
 | `.t-h3`       | 36 / 32 / 26                     | 500    | 130%        |
 | `.t-h4/.t-h5` | 20                               | 700    | 130%        |
 | `.t-h6`       | 18                               | 700    | 130%        |
