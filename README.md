@@ -65,7 +65,13 @@ The document has three levels, and nothing else:
 
 Plus a few conveniences:
 
-- **`圖片佔位`** on its own line becomes an image placeholder tile.
+- **Image slots** on their own line:
+  - `圖片 3 佔位` pulls in `public/images/<slug>/3.png`
+  - `圖片 5, 6 佔位` stacks both images as one tight group
+  - `圖片佔位` (no number), or a number with no file behind it, renders a
+    placeholder tile
+  - `圖片佔位(待補，圖片編號 6, 7)` stays a placeholder — 待補 means pending
+  - Aspect ratios are read from each PNG, so nothing is cropped
 - The **first paragraph under `#`** is split: line 1 is the byline
   (role / dates), the rest is the lead.
 - A line starting **`01 |`** becomes a label for the copy beneath it.

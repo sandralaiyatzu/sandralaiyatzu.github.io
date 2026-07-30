@@ -25,12 +25,42 @@ Output:
 
 import json
 import re
+import struct
 import sys
 from pathlib import Path
 
 SKIP_HEADINGS = ('待你確認', '待補', '待確認')
-IMAGE_MARKERS = ('圖片佔位', '圖片待補', '[圖片]')
 DEFAULT_RATIO = 1.9091
+
+# "圖片佔位", "圖片 1 佔位", "圖片 5, 6 佔位", "圖片佔位(待補，圖片編號 6, 7)"
+IMAGE_LINE = re.compile(r'^圖片\s*([\d\s,、]*)\s*佔位(.*)$')
+
+
+def png_ratio(path):
+    """Aspect ratio straight from the file header — no dependencies."""
+    try:
+        with open(path, 'rb') as f:
+            head = f.read(33)
+        if head[:8] == b'\x89PNG\r\n\x1a\n':
+            w, h = struct.unpack('>II', head[16:24])
+            return round(w / h, 4)
+    except OSError:
+        pass
+    return DEFAULT_RATIO
+
+
+def resolve_slot(numbers, img_dir, slug):
+    """Map the numbers in an image slot onto real files, if they exist."""
+    found = []
+    for n in numbers:
+        for ext in ('png', 'jpg', 'jpeg', 'gif'):
+            rel = f'{slug}/{n}.{ext}'
+            full = Path(img_dir) / rel if img_dir else None
+            if full and full.exists():
+                ratio = png_ratio(full) if ext == 'png' else DEFAULT_RATIO
+                found.append({'src': f'/images/{rel}', 'alt': '', 'ratio': ratio})
+                break
+    return found
 
 
 def inline(text):
@@ -61,12 +91,7 @@ def inline(text):
     return text.strip()
 
 
-def is_image_marker(line):
-    s = line.strip()
-    return any(s == m or s.startswith(m) for m in IMAGE_MARKERS)
-
-
-def parse(md_path):
+def parse(md_path, img_dir=None, slug=None):
     lines = Path(md_path).read_text(encoding='utf-8').split('\n')
 
     title = meta = lead = None
@@ -136,12 +161,21 @@ def parse(md_path):
             i += 1
             continue
 
-        # ── image placeholder ─────────────────────────────────────
-        if is_image_marker(stripped):
+        # ── image slot ────────────────────────────────────────────
+        m_img = IMAGE_LINE.match(stripped)
+        if m_img:
             flush_para()
             close_rich()
-            blocks.append({'type': 'image', 'placeholder': True,
-                           'ratio': DEFAULT_RATIO})
+            nums_text, trailing = m_img.group(1), m_img.group(2)
+            # "圖片佔位(待補，圖片編號 6, 7)" is still pending — not a real slot
+            pending = '待補' in trailing
+            nums = [] if pending else [int(x) for x in re.findall(r'\d+', nums_text)]
+            images = resolve_slot(nums, img_dir, slug) if nums else []
+            if images:
+                blocks.append({'type': 'image', 'images': images})
+            else:
+                blocks.append({'type': 'image', 'placeholder': True,
+                               'ratio': DEFAULT_RATIO})
             i += 1
             continue
 
@@ -223,9 +257,13 @@ def parse(md_path):
 
 if __name__ == '__main__':
     src, dest = sys.argv[1], sys.argv[2]
-    data = parse(src)
+    img_dir = sys.argv[3] if len(sys.argv) > 3 else None
+    slug = Path(dest).stem
+    data = parse(src, img_dir, slug)
     Path(dest).write_text(
         json.dumps(data, ensure_ascii=False, indent=1), encoding='utf-8')
-    n_img = sum(1 for b in data['blocks'] if b['type'] == 'image')
+    real = sum(len(b.get('images', [])) for b in data['blocks'])
+    ph = sum(1 for b in data['blocks'] if b.get('placeholder'))
     n_txt = sum(1 for b in data['blocks'] if b['type'] == 'rich')
-    print(f'{Path(dest).name:20} {n_txt:3} text  {n_img:3} images   {data["title"]}')
+    print(f'{Path(dest).name:20} {n_txt:3} text  {real:3} images  '
+          f'{ph:2} placeholders   {data["title"]}')

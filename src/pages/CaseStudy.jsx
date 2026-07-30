@@ -56,31 +56,43 @@ export default function CaseStudy({ slug }) {
             )}
           </header>
 
-          {doc.blocks.map((block, i) =>
-            block.type === 'image' ? (
-              block.placeholder ? (
+          {doc.blocks.map((block, i) => {
+            if (block.type !== 'image') {
+              return (
+                <RichBlock key={i} items={block.items} onImageClick={setZoomed} />
+              );
+            }
+
+            if (block.placeholder) {
+              return (
                 <div
                   className="ph ph--cover"
                   key={i}
                   role="presentation"
                   style={{ aspectRatio: String(block.ratio) }}
                 />
-              ) : (
-                <button
-                  type="button"
-                  className="cs__figure"
-                  key={i}
-                  onClick={() => setZoomed(block)}
-                  aria-label="Enlarge image"
-                  style={{ aspectRatio: String(block.ratio) }}
-                >
-                  <img src={block.src} alt={block.alt || ''} loading="lazy" />
-                </button>
-              )
-            ) : (
-              <RichBlock key={i} items={block.items} onImageClick={setZoomed} />
-            )
-          )}
+              );
+            }
+
+            // One slot may hold several images ("圖片 5, 6 佔位") — they
+            // stack together and read as a group.
+            return (
+              <div className="cs__slot" key={i}>
+                {block.images.map((img, j) => (
+                  <button
+                    type="button"
+                    className="cs__figure"
+                    key={j}
+                    onClick={() => setZoomed(img)}
+                    aria-label="Enlarge image"
+                    style={{ aspectRatio: String(img.ratio) }}
+                  >
+                    <img src={img.src} alt={img.alt || ''} loading="lazy" />
+                  </button>
+                ))}
+              </div>
+            );
+          })}
         </div>
       </main>
 

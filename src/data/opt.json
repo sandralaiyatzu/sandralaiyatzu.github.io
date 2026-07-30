@@ -1,12 +1,17 @@
 {
  "title": "OPT 歐趴糖｜線上線下整合的活動體驗",
- "meta": "歐趴雞排 ｜ 2024.02 – 2024.03 ｜ 唯一設計師",
+ "meta": "歐趴雞排 ｜ 2024.02 – 2024.03 ｜ 資深 UI/UX 設計師",
  "lead": "活動現場，一小時只發得出一百多片雞排。瓶頸不在炸鍋，在一個使用者找不到回來路徑的頁面。",
  "blocks": [
   {
    "type": "image",
-   "placeholder": true,
-   "ratio": 1.9091
+   "images": [
+    {
+     "src": "/images/opt/1.png",
+     "alt": "",
+     "ratio": 2.144
+    }
+   ]
   },
   {
    "type": "rich",
@@ -82,8 +87,13 @@
   },
   {
    "type": "image",
-   "placeholder": true,
-   "ratio": 1.9091
+   "images": [
+    {
+     "src": "/images/opt/2.png",
+     "alt": "",
+     "ratio": 1.95
+    }
+   ]
   },
   {
    "type": "rich",
@@ -112,8 +122,13 @@
   },
   {
    "type": "image",
-   "placeholder": true,
-   "ratio": 1.9091
+   "images": [
+    {
+     "src": "/images/opt/3.png",
+     "alt": "",
+     "ratio": 1.9091
+    }
+   ]
   },
   {
    "type": "rich",
@@ -164,8 +179,13 @@
   },
   {
    "type": "image",
-   "placeholder": true,
-   "ratio": 1.9091
+   "images": [
+    {
+     "src": "/images/opt/4.png",
+     "alt": "",
+     "ratio": 1.9108
+    }
+   ]
   },
   {
    "type": "rich",
@@ -182,8 +202,18 @@
   },
   {
    "type": "image",
-   "placeholder": true,
-   "ratio": 1.9091
+   "images": [
+    {
+     "src": "/images/opt/5.png",
+     "alt": "",
+     "ratio": 1.9097
+    },
+    {
+     "src": "/images/opt/6.png",
+     "alt": "",
+     "ratio": 1.9097
+    }
+   ]
   },
   {
    "type": "rich",
@@ -212,8 +242,18 @@
   },
   {
    "type": "image",
-   "placeholder": true,
-   "ratio": 1.9091
+   "images": [
+    {
+     "src": "/images/opt/7.png",
+     "alt": "",
+     "ratio": 1.9105
+    },
+    {
+     "src": "/images/opt/8.png",
+     "alt": "",
+     "ratio": 1.9099
+    }
+   ]
   },
   {
    "type": "rich",
@@ -246,8 +286,13 @@
   },
   {
    "type": "image",
-   "placeholder": true,
-   "ratio": 1.9091
+   "images": [
+    {
+     "src": "/images/opt/9.png",
+     "alt": "",
+     "ratio": 1.9091
+    }
+   ]
   },
   {
    "type": "rich",
@@ -263,17 +308,7 @@
     {
      "tag": "p",
      "html": "我選擇在活動進行中投入現場觀察，而不是等活動結束後看數據。因為這檔活動僅有一個多月，等到結束才發現斷點，就沒有迭代優化的機會了。"
-    }
-   ]
-  },
-  {
-   "type": "image",
-   "placeholder": true,
-   "ratio": 1.9091
-  },
-  {
-   "type": "rich",
-   "items": [
+    },
     {
      "tag": "h4",
      "html": "迭代優化"
@@ -309,8 +344,13 @@
   },
   {
    "type": "image",
-   "placeholder": true,
-   "ratio": 1.9091
+   "images": [
+    {
+     "src": "/images/opt/10.png",
+     "alt": "",
+     "ratio": 6.8435
+    }
+   ]
   },
   {
    "type": "rich",
@@ -343,17 +383,7 @@
     {
      "tag": "p",
      "html": "雞排本身是行銷誘因，負責把人帶到現場；流程設計負責讓人真的走完。前兩項是兩者共同的結果，第三項則直接反映流程步驟數與跳頁斷點的改善。"
-    }
-   ]
-  },
-  {
-   "type": "image",
-   "placeholder": true,
-   "ratio": 1.9091
-  },
-  {
-   "type": "rich",
-   "items": [
+    },
     {
      "tag": "h4",
      "html": "我留下了什麼"
@@ -378,8 +408,13 @@
   },
   {
    "type": "image",
-   "placeholder": true,
-   "ratio": 1.9091
+   "images": [
+    {
+     "src": "/images/opt/11.png",
+     "alt": "",
+     "ratio": 1.9091
+    }
+   ]
   },
   {
    "type": "rich",
