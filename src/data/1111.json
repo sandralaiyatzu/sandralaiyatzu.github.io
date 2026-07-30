@@ -274,8 +274,13 @@
   },
   {
    "type": "image",
-   "placeholder": true,
-   "ratio": 1.9091
+   "images": [
+    {
+     "src": "/images/1111/12.png",
+     "alt": "",
+     "ratio": 1.6
+    }
+   ]
   },
   {
    "type": "rich",
