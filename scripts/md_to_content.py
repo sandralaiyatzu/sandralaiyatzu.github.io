@@ -36,29 +36,50 @@ DEFAULT_RATIO = 1.9091
 IMAGE_LINE = re.compile(r'^圖片\s*([\d\s,、]*)\s*佔位(.*)$')
 
 
-def png_ratio(path):
+def image_ratio(path):
     """Aspect ratio straight from the file header — no dependencies."""
     try:
-        with open(path, 'rb') as f:
-            head = f.read(33)
-        if head[:8] == b'\x89PNG\r\n\x1a\n':
-            w, h = struct.unpack('>II', head[16:24])
-            return round(w / h, 4)
+        head = Path(path).read_bytes()[:64]
     except OSError:
-        pass
+        return DEFAULT_RATIO
+
+    if head[:8] == b'\x89PNG\r\n\x1a\n':
+        w, h = struct.unpack('>II', head[16:24])
+        return round(w / h, 4)
+
+    if head[:4] == b'RIFF' and head[8:12] == b'WEBP':
+        kind = head[12:16]
+        if kind == b'VP8 ':                                   # lossy
+            w = struct.unpack('<H', head[26:28])[0] & 0x3FFF
+            h = struct.unpack('<H', head[28:30])[0] & 0x3FFF
+        elif kind == b'VP8L':                                 # lossless
+            bits = struct.unpack('<I', head[21:25])[0]
+            w = (bits & 0x3FFF) + 1
+            h = ((bits >> 14) & 0x3FFF) + 1
+        elif kind == b'VP8X':                                 # extended
+            w = int.from_bytes(head[24:27], 'little') + 1
+            h = int.from_bytes(head[27:30], 'little') + 1
+        else:
+            return DEFAULT_RATIO
+        return round(w / h, 4) if h else DEFAULT_RATIO
+
     return DEFAULT_RATIO
+
+
+# WebP first — scripts/optimize-images.sh writes those; the rest are fallbacks
+IMAGE_EXTS = ('webp', 'png', 'jpg', 'jpeg', 'gif')
 
 
 def resolve_slot(numbers, img_dir, slug):
     """Map the numbers in an image slot onto real files, if they exist."""
     found = []
     for n in numbers:
-        for ext in ('png', 'jpg', 'jpeg', 'gif'):
+        for ext in IMAGE_EXTS:
             rel = f'{slug}/{n}.{ext}'
             full = Path(img_dir) / rel if img_dir else None
             if full and full.exists():
-                ratio = png_ratio(full) if ext == 'png' else DEFAULT_RATIO
-                found.append({'src': f'/images/{rel}', 'alt': '', 'ratio': ratio})
+                found.append({'src': f'/images/{rel}', 'alt': '',
+                              'ratio': image_ratio(full)})
                 break
     return found
 

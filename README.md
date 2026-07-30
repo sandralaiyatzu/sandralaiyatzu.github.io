@@ -12,7 +12,7 @@ Deployed to GitHub Pages at **sandralaiyatzu.com**.
 - **Vite** + **React 19**
 - **React Router** (client-side routing)
 - Plain CSS, no framework
-- Self-hosted Satoshi and local images — no external requests at runtime
+- Self-hosted Satoshi and local WebP images — no external requests at runtime
 
 ## Pages
 
@@ -53,8 +53,12 @@ npm run preview    # serve the production build locally
 into `src/data/<slug>.json`. Edit the Markdown, then regenerate:
 
 ```bash
-sh scripts/build-content.sh ..
+sh scripts/optimize-images.sh ../images   # originals -> public/images/*.webp
+sh scripts/build-content.sh ..            # Markdown  -> src/data/*.json
 ```
+
+Run them in that order — the content step looks in `public/images/` to decide
+whether a slot gets a real image or a placeholder.
 
 ### Case-study Markdown rules
 
@@ -69,12 +73,12 @@ The document has three levels, and nothing else:
 Plus a few conveniences:
 
 - **Image slots** on their own line:
-  - `圖片 3 佔位` pulls in `public/images/<slug>/3.png`
+  - `圖片 3 佔位` pulls in `public/images/<slug>/3.webp`
   - `圖片 5, 6 佔位` stacks both images as one tight group
   - `圖片佔位` (no number), or a number with no file behind it, renders a
     placeholder tile
   - `圖片佔位(待補，圖片編號 6, 7)` stays a placeholder — 待補 means pending
-  - Aspect ratios are read from each PNG, so nothing is cropped
+  - Aspect ratios are read from each file's header, so nothing is cropped
 - The **first paragraph under `#`** is split: line 1 is the byline
   (role / dates), the rest is the lead.
 - A line starting **`01 |`** becomes a label for the copy beneath it.

@@ -69,7 +69,7 @@ export const PROJECTS = [
 ];
 
 export const ABOUT = {
-  avatar: '/images/d5iOsQQLVNnptAzePagTK4YyQ0.jpg',
+  avatar: '/images/about/d5iOsQQLVNnptAzePagTK4YyQ0.webp',
   heading: '👋Hi, I am Sandra Lai.',
   paragraphs: [
     '我是一位產品設計師，目前在台北。10 多年設計經歷、7 年 UI/UX 實務，跨足人力仲介、IoT、電商與企業內部系統。',
@@ -121,19 +121,19 @@ export const ABOUT = {
   quotesHeading: 'My Colleagues Describe Me',
   quotes: [
     {
-      avatar: '/images/QPFDP0KouDlymCm7IFBeA.png',
+      avatar: '/images/about/QPFDP0KouDlymCm7IFBeA.webp',
       name: 'Chloe Mou',
       role: 'Product Manager',
       text: '在產品專案中，Sandra 總是能給我們系統化的設計規劃，讓我們可以應對多變的需求調整。同時，UX 上帶給我們她的經驗及市場上的設計分析，設計時還能同時兼顧使用者需求及開發難度。能與一個具備優秀溝通能力且專業有想法的設計師合作，真的很高興。',
     },
     {
-      avatar: '/images/GEZbLag4i9hcy3K34TpQNwUYBhs.png',
+      avatar: '/images/about/GEZbLag4i9hcy3K34TpQNwUYBhs.webp',
       name: 'Jackie',
       role: 'Front-end Developer',
       text: 'Sandra 總能在需求調整或技術實現有困難時，與客戶進行有效溝通，並提供完整且精確的解決方案，確保各方滿意。她具備卓越的溝通能力，工作明確而高效，設計不僅符合 UI/UX 原則，還能滿足客戶需求且富有創新。與 Sandra 合作，我深感安心，並對她的專業能力讚不絕口。',
     },
     {
-      avatar: '/images/8nZRFYSnTadf6krAyB2WGxJJX10.png',
+      avatar: '/images/about/8nZRFYSnTadf6krAyB2WGxJJX10.webp',
       name: 'Weiling Liu',
       role: 'Front-end Designer',
       text: 'Sandra 在 UI 設計上展現獨特美感，每個細節都充滿個人風格，且設計速度非常快速，能高效完成任務。在 UX 團隊討論和執行中，她樂於分享自身經驗，提供寶貴見解和建議，幫助團隊更好地理解和實現設計目標。',
