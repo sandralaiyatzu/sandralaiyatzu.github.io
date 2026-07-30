@@ -1,13 +1,16 @@
 import { Link } from 'react-router-dom';
 import { HERO, PROJECTS, EMAIL } from '../data/site';
+import { coverFor } from '../data/covers';
 import usePageTitle from '../hooks/usePageTitle';
 
 function WorkCard({ project }) {
+  const cover = project.cover ?? coverFor(project.slug);
+
   return (
     <Link className="card" to={`/${project.slug}`}>
       <div className="card__media">
-        {project.cover ? (
-          <img src={project.cover} alt="" />
+        {cover ? (
+          <img src={cover} alt="" />
         ) : (
           <div className="ph" role="presentation" />
         )}

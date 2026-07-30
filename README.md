@@ -30,6 +30,9 @@ Deployed to GitHub Pages at **sandralaiyatzu.com**.
 Order, slugs and routes all derive from `PROJECTS` in `src/data/site.js` —
 adding a project there adds its card, its route and its "More Work" entry.
 
+Card art is the first image of each case study (`src/data/covers.js`), so a
+project's card fills in by itself once its artwork lands.
+
 ## Development
 
 ```bash

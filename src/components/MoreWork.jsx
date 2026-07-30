@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { PROJECTS } from '../data/site';
+import { coverFor } from '../data/covers';
 
 /**
  * Shown at the foot of every case study: compact cards for the other projects.
@@ -17,11 +18,13 @@ export default function MoreWork({ currentSlug }) {
         </h3>
 
         <div className="more__grid" style={{ '--cols': others.length }}>
-          {others.map((p) => (
+          {others.map((p) => {
+            const cover = p.cover ?? coverFor(p.slug);
+            return (
             <Link className="mini" to={`/${p.slug}`} key={p.slug}>
               <div className="mini__media">
-                {p.cover ? (
-                  <img src={p.cover} alt="" loading="lazy" />
+                {cover ? (
+                  <img src={cover} alt="" loading="lazy" />
                 ) : (
                   <div className="ph" role="presentation" />
                 )}
@@ -31,7 +34,8 @@ export default function MoreWork({ currentSlug }) {
                 <p className="t-small mini__tags">{p.tags}</p>
               </div>
             </Link>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
