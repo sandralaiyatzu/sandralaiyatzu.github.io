@@ -9,11 +9,18 @@
 //
 // Pass one or more slugs to convert only those folders; without them every
 // folder under the source directory is rebuilt.
+//
+// A source whose .webp is already newer than it is left alone, so adding one
+// image to a folder re-encodes that one image rather than every sibling —
+// re-encoding is lossy, and it would churn the whole folder in git. Pass
+// --force to rebuild regardless.
 import { mkdir, readdir, stat } from 'node:fs/promises'
 import path from 'node:path'
 import sharp from 'sharp'
 
-const [srcArg, ...slugs] = process.argv.slice(2)
+const argv = process.argv.slice(2)
+const force = argv.includes('--force')
+const [srcArg, ...slugs] = argv.filter((arg) => arg !== '--force')
 const SRC = srcArg ?? '../images'
 const DEST = 'public/images'
 const MAX_WIDTH = 1920
@@ -37,6 +44,7 @@ if (slugs.length > 0) {
 
 let totalBefore = 0
 let totalAfter = 0
+let skipped = 0
 
 for (const slug of dirs) {
   await mkdir(path.join(DEST, slug), { recursive: true })
@@ -50,13 +58,22 @@ for (const slug of dirs) {
     const src = path.join(SRC, slug, name)
     const out = path.join(DEST, slug, `${path.parse(name).name}.webp`)
 
+    const srcStat = await stat(src)
+    if (!force) {
+      const outStat = await stat(out).catch(() => null)
+      if (outStat && outStat.mtimeMs >= srcStat.mtimeMs) {
+        skipped += 1
+        continue
+      }
+    }
+
     // Only ever shrink — never upscale a smaller original
     await sharp(src)
       .resize({ width: MAX_WIDTH, withoutEnlargement: true })
       .webp({ quality: QUALITY })
       .toFile(out)
 
-    const before = (await stat(src)).size
+    const before = srcStat.size
     const after = (await stat(out)).size
     totalBefore += before
     totalAfter += after
@@ -67,4 +84,5 @@ for (const slug of dirs) {
 }
 
 const mb = (bytes) => (bytes / 1048576).toFixed(1)
-console.log(`\ntotal  ${mb(totalBefore)} MB → ${mb(totalAfter)} MB`)
+const note = skipped > 0 ? `   (${skipped} already up to date)` : ''
+console.log(`\ntotal  ${mb(totalBefore)} MB → ${mb(totalAfter)} MB${note}`)

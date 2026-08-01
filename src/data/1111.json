@@ -182,8 +182,13 @@
   },
   {
    "type": "image",
-   "placeholder": true,
-   "ratio": 1.9091
+   "images": [
+    {
+     "src": "/images/1111/6.webp",
+     "alt": "",
+     "ratio": 1.8551
+    }
+   ]
   },
   {
    "type": "rich",
