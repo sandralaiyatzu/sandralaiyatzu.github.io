@@ -5,8 +5,13 @@
  "blocks": [
   {
    "type": "image",
-   "placeholder": true,
-   "ratio": 1.9091
+   "images": [
+    {
+     "src": "/images/ruhachu/1.webp",
+     "alt": "",
+     "ratio": 1.92
+    }
+   ]
   },
   {
    "type": "rich",
@@ -43,8 +48,13 @@
   },
   {
    "type": "image",
-   "placeholder": true,
-   "ratio": 1.9091
+   "images": [
+    {
+     "src": "/images/ruhachu/2.webp",
+     "alt": "",
+     "ratio": 1.8551
+    }
+   ]
   },
   {
    "type": "rich",
@@ -97,8 +107,13 @@
   },
   {
    "type": "image",
-   "placeholder": true,
-   "ratio": 1.9091
+   "images": [
+    {
+     "src": "/images/ruhachu/3.webp",
+     "alt": "",
+     "ratio": 1.8551
+    }
+   ]
   },
   {
    "type": "rich",
@@ -139,8 +154,13 @@
   },
   {
    "type": "image",
-   "placeholder": true,
-   "ratio": 1.9091
+   "images": [
+    {
+     "src": "/images/ruhachu/4.webp",
+     "alt": "",
+     "ratio": 1.8551
+    }
+   ]
   },
   {
    "type": "rich",
@@ -192,8 +212,13 @@
   },
   {
    "type": "image",
-   "placeholder": true,
-   "ratio": 1.9091
+   "images": [
+    {
+     "src": "/images/ruhachu/5.webp",
+     "alt": "",
+     "ratio": 1.8551
+    }
+   ]
   },
   {
    "type": "rich",

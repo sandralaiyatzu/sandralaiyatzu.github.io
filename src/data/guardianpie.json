@@ -5,8 +5,13 @@
  "blocks": [
   {
    "type": "image",
-   "placeholder": true,
-   "ratio": 1.9091
+   "images": [
+    {
+     "src": "/images/guardianpie/1.webp",
+     "alt": "",
+     "ratio": 1.92
+    }
+   ]
   },
   {
    "type": "rich",
@@ -63,8 +68,13 @@
   },
   {
    "type": "image",
-   "placeholder": true,
-   "ratio": 1.9091
+   "images": [
+    {
+     "src": "/images/guardianpie/2.webp",
+     "alt": "",
+     "ratio": 1.8551
+    }
+   ]
   },
   {
    "type": "rich",
@@ -116,8 +126,13 @@
   },
   {
    "type": "image",
-   "placeholder": true,
-   "ratio": 1.9091
+   "images": [
+    {
+     "src": "/images/guardianpie/3.webp",
+     "alt": "",
+     "ratio": 1.8551
+    }
+   ]
   },
   {
    "type": "rich",
@@ -145,8 +160,13 @@
   },
   {
    "type": "image",
-   "placeholder": true,
-   "ratio": 1.9091
+   "images": [
+    {
+     "src": "/images/guardianpie/4.webp",
+     "alt": "",
+     "ratio": 1.8551
+    }
+   ]
   },
   {
    "type": "rich",
