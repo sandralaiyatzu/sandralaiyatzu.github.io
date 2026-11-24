@@ -35,6 +35,14 @@ export const PROJECTS = [
     cover: null,
   },
   {
+    slug: 'guardianpie',
+    title: 'Guardian Pie 守護派｜動物捐款整合平台',
+    tags: 'Independent Product · IA · Non-profit',
+    description:
+      'Google 搜尋動保捐款，排在前面的永遠是同幾個組織。還有一群組織連自己的網站都沒有，只能靠 Facebook 貼文募款。這份案例談的是：我做了一個解決能見度問題的平台，卻沒有替它爭取能見度；以及我回頭補做之後，發現 SEO 其實是資訊架構的問題。',
+    cover: null,
+  },
+  {
     slug: 'opt',
     title: 'OPT 歐趴糖｜線上線下整合的活動體驗',
     tags: 'Product Design · Field Research · Cross-functional',
@@ -56,14 +64,6 @@ export const PROJECTS = [
     tags: 'E-commerce · Flow Simplification · Corporate Identity',
     description:
       '要在這個平台上買一件東西，使用者得走完十個步驟，中間還會被彈出視窗和新分頁打斷兩次。這份案例談的是：一個我在報價階段就低估了規模的專案，以及它教會我的事。',
-    cover: null,
-  },
-  {
-    slug: 'guardianpie',
-    title: 'Guardian Pie 守護派｜動物捐款整合平台',
-    tags: 'Independent Product · IA · Non-profit',
-    description:
-      'Google 搜尋動保捐款，排在前面的永遠是同幾個組織。還有一群組織連自己的網站都沒有，只能靠 Facebook 貼文募款。這份案例談的是：我做了一個解決能見度問題的平台，卻沒有替它爭取能見度；以及我回頭補做之後，發現 SEO 其實是資訊架構的問題。',
     cover: null,
   },
 ];
